@@ -57,8 +57,8 @@ html = f'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>3607 Pacific Avenue | Investment Offering | Marcus &amp; Millichap</title>
-<meta name="description" content="3607 Pacific Avenue — A renovated 6-unit Mid-Century Modern apartment building on the Marina Peninsula, steps from the beach. $5,395,000.">
+<title>Eastwind Apartments | 3607 Pacific Avenue | Investment Offering | Marcus &amp; Millichap</title>
+<meta name="description" content="Eastwind Apartments — 3607 Pacific Avenue, a renovated six-unit beach-front offering on the Marina Peninsula in Marina del Rey, steps from the sand. $5,395,000.">
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FbBfb4q0FVpiMSHBhjERp_R2lP3wDE8&callback=initMaps&loading=async&v=weekly"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -156,6 +156,9 @@ tbody tr.hl td{{border-bottom-color:#C5A258}}
 .hb{{background:#1B3A5C;color:#fff;border-radius:8px;padding:22px 24px}}
 .hb h4{{color:#C5A258;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}}
 .hb p{{font-size:13px;line-height:1.6;color:rgba(255,255,255,.92);margin:0}}
+.hb ul{{margin:6px 0 0 18px;padding:0}}
+.hb li{{font-size:13px;line-height:1.6;color:rgba(255,255,255,.92);margin-bottom:7px}}
+.hb li:last-child{{margin-bottom:0}}
 
 /* ════ LOCATION HERO ════ */
 .loc-hero{{width:100%;display:block;border-radius:8px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.18);margin-bottom:24px}}
@@ -262,8 +265,8 @@ table{{page-break-inside:auto}}
 <div class="cover-content">
 <img src="{logo}" alt="LAAA Team" class="cover-logo">
 <div class="cover-label">Investment Offering</div>
-<h1 class="cover-title">3607 Pacific Avenue</h1>
-<p class="cover-sub">Marina Del Rey, CA 90292 &nbsp;&bull;&nbsp; Marina Peninsula</p>
+<h1 class="cover-title">Eastwind Apartments</h1>
+<p class="cover-sub">3607 Pacific Avenue &nbsp;&bull;&nbsp; Marina del Rey, CA 90292 &nbsp;&bull;&nbsp; Marina Peninsula</p>
 <div class="cover-price">$5,395,000</div>
 <div class="cover-stats">
 <div><span class="cv">6</span><span class="cl">Units</span></div>
@@ -296,7 +299,7 @@ table{{page-break-inside:auto}}
 <!-- ════ EXECUTIVE SUMMARY ════ -->
 <div class="section" id="summary">
 <div class="section-title">Executive Summary</div>
-<div class="section-subtitle">Investment Offering &bull; 3607 Pacific Avenue, Marina Del Rey</div>
+<div class="section-subtitle">Investment Offering &bull; Eastwind Apartments, Marina del Rey</div>
 <div class="section-divider"></div>
 
 <div class="mg4">
@@ -307,7 +310,7 @@ table{{page-break-inside:auto}}
 </div>
 
 <p class="exec-intro">
-Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to present <strong>3607 Pacific Avenue</strong> &mdash; a rare architectural six-unit apartment building on the Marina Peninsula in Marina Del Rey. Designed by a prominent Los Angeles architect, this Mid-Century Modern property combines coastal walk-street privacy with steps-to-the-beach proximity, gated entry, one covered parking space per unit, and an expansive private roof terrace. Five of six units have been fully renovated, the soft-story seismic retrofit was completed in March 2024, and the property is offered at <strong>$5,395,000</strong> with a 4.75% in-place cap rate and a 5.60% pro forma cap rate.
+Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to present <strong>Eastwind Apartments</strong> at <strong>3607 Pacific Avenue</strong>, a rare architectural six-unit beach-front offering on the Marina Peninsula in Marina del Rey. Designed by renowned Los Angeles architect Ellis Gelman, this contemporary property combines coastal walk-street privacy with steps-to-the-sand proximity, gated entry, one covered parking space per unit, private roof terraces for the four upstairs units, and extraordinarily large beach-access patios for the two ground-floor units, with in-unit laundry being added throughout. Five of six units have been fully renovated, the soft-story seismic retrofit was completed in March 2024, and the property is offered at <strong>$5,395,000</strong> with a 4.75% in-place cap rate and a 5.60% pro forma cap rate.
 </p>
 
 <div class="exec-aerial">
@@ -317,10 +320,10 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 
 <div class="exec-facts two-col">
 <table class="it">
-<tr><td>Address</td><td>3607 Pacific Avenue, Marina Del Rey, CA 90292</td></tr>
+<tr><td>Address</td><td>3607 Pacific Avenue, Marina del Rey, CA 90292</td></tr>
 <tr><td>Submarket</td><td>Marina Peninsula / Venice Coastal Zone</td></tr>
 <tr><td>Units</td><td>6 &mdash; All 2BR/1BA</td></tr>
-<tr><td>Building SF</td><td>5,634 SF (avg 900 SF/unit)</td></tr>
+<tr><td>Building SF</td><td>5,634 SF (avg ~925 SF/unit)</td></tr>
 <tr><td>Lot Size</td><td>0.15 Acres (6,401 SF)</td></tr>
 <tr><td>Year Built / Renovated</td><td>1964 / 2025</td></tr>
 </table>
@@ -338,7 +341,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <!-- ════ INVESTMENT OVERVIEW ════ -->
 <div class="section section-alt" id="overview">
 <div class="section-title">Investment Overview</div>
-<div class="section-subtitle">Mid-Century Modern Architecture &bull; Steps from the Beach</div>
+<div class="section-subtitle">Architecture by Ellis Gelman &bull; Steps from the Sand</div>
 <div class="section-divider"></div>
 
 <div class="photo-grid">
@@ -349,11 +352,11 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 </div>
 
 <div class="narrative">
-<p>3607 Pacific Avenue is a rare architectural apartment offering located in the heart of Marina Del Rey, California. Designed by a prominent Los Angeles architect, this Mid-Century Modern six-unit property showcases timeless design elements and a unique aesthetic that sets it apart from typical coastal multifamily inventory. Combining style, functionality, and a premier location, 3607 Pacific Avenue represents a generational opportunity to own a one-of-a-kind property in one of Southern California&rsquo;s most dynamic rental markets.</p>
+<p>The LAAA Team at Marcus &amp; Millichap is proud to present <strong>Eastwind Apartments</strong>, a rare architectural six-unit beach-front offering located in the heart of Marina del Rey, California, on the highly coveted <strong>Marina Peninsula</strong>, one of the most supply-constrained and sought-after coastal rental submarkets in Los Angeles. Designed by renowned Los Angeles architect Ellis Gelman, Eastwind showcases a timeless contemporary aesthetic that sets it apart from typical coastal multifamily inventory, sitting just steps from the sand on what is widely regarded as the most private and pristine stretch of beach in Los Angeles. Set within a unique beach community, the property is within walking distance of restaurants and shops, the Marina del Rey boat harbor, the Venice Fishing Pier, and the iconic Venice Canals. This is a generational opportunity to acquire a true pride-of-ownership coastal asset that simply cannot be replicated in today&rsquo;s market.</p>
 
-<p>Positioned on a quiet walk street on the highly coveted <strong>Marina Peninsula</strong>, 3607 Pacific Avenue is just steps from the beach while maintaining an intimate sense of privacy and community. The property features expansive open floor plans with vaulted ceilings and floor-to-ceiling glass, creating light-filled interiors and a seamless indoor-outdoor flow. Units are appointed with European-style kitchens boasting quartz countertops, stainless steel appliances, and wood flooring, blending modern convenience with architectural charm.</p>
+<p>Built in 1964 and improved through an extensive capital-improvement program, Eastwind is comprised of six spacious 2 bed / 1 bath units averaging 925 square feet each, configured as two ground-level residences with extraordinarily large private patios offering direct, private access to the beach walk, and four upstairs residences each with its own large private roof terrace. Five of the six units have been fully renovated, with bright, open floor plans framed by floor-to-ceiling, wall-to-wall glass and appointed with modern European-style kitchens featuring stainless steel appliances and quartz countertops, along with wood flooring throughout. The property also benefits from a completed soft-story seismic retrofit, gated entry, one covered parking space per unit, and in-unit laundry being added throughout the building. Eastwind is delivered in excellent condition.</p>
 
-<p>A signature highlight of the property is its large private roof terrace, offering panoramic views and a premium lifestyle amenity rarely available in Marina Del Rey rental housing. Residents also benefit from gated entry, on-site laundry facilities, and one covered parking space per unit, enhancing both comfort and security. The property has been carefully renovated &mdash; five of six units have been fully updated, and the soft-story seismic retrofit was completed in March 2024 with a Certificate of Compliance issued by LADBS.</p>
+<p>Eastwind&rsquo;s location is what makes it truly irreplaceable. Residents enjoy a quiet, intimate beach-community setting within walking distance of the Marina del Rey boat harbor, the Venice Fishing Pier, the iconic Venice Canals, and the restaurants and shops of Washington Boulevard and Abbot Kinney. For investors, the offering pairs a Gelman architectural pedigree and rare beach-walk frontage with a clear path to additional upside: continued mark-to-market on unit turnover, the lease-up of recently renovated units, and the future optionality to convert the building&rsquo;s existing office space into a studio ADU for incremental income. Positioned on the Marina Peninsula in one of Southern California&rsquo;s most rent-stable coastal submarkets, Eastwind offers sustained tenant demand, durable long-term value, and a quality of asset that properties on this beach simply do not bring to market.</p>
 </div>
 </div>
 
@@ -365,59 +368,64 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 
 <div class="hb-grid">
 
-<div class="hb"><h4>Prime Marina Peninsula Location</h4>
-<p>Situated on a quiet walk street just steps from the beach on the exclusive Marina Peninsula &mdash; one of the most supply-constrained and sought-after rental submarkets in Los Angeles. Walking distance to Venice Ocean Front Walk, the Venice Canals, the Venice Fishing Pier, Mothers Beach, Marina del Rey Harbor, and Abbot Kinney Boulevard.</p></div>
+<div class="hb"><h4>Unit Amenities</h4>
+<ul>
+<li>Bright units with floor-to-ceiling, wall-to-wall glass throughout</li>
+<li>European-style kitchens with stainless steel appliances and quartz countertops</li>
+<li>Wood flooring throughout</li>
+<li>Spacious 2 bed / 1 bath floor plans averaging 925 square feet</li>
+<li>Ground-level units feature extraordinarily large private patios with direct, private access to the beach walk</li>
+<li>Upstairs units feature large private roof terraces (one per unit, four total)</li>
+</ul></div>
 
-<div class="hb"><h4>Renovated 1964 / 2025 &mdash; 5 of 6 Units Fully Renovated</h4>
-<p>Five of six units have been fully renovated with modern interiors: European-style kitchens with quartz countertops, stainless steel appliances, and wood flooring throughout. The property has been carefully maintained and modernized to meet contemporary tenant expectations while preserving its architectural character.</p></div>
+<div class="hb"><h4>Common-Area Amenities</h4>
+<ul>
+<li>Outstanding contemporary architecture by renowned Los Angeles architect Ellis Gelman</li>
+<li>Gated entry with secured access</li>
+<li>One covered parking space per unit</li>
+<li>In-unit laundry being added throughout the building</li>
+<li>Building well-maintained and delivered in excellent condition</li>
+</ul></div>
 
-<div class="hb"><h4>Soft-Story Retrofit Completed</h4>
-<p>Certificate of Compliance issued March 26, 2024. The largest single seismic compliance item required for a 1964-era multifamily property in Los Angeles is fully complete &mdash; eliminating a major capital risk and ongoing compliance obligation for the new owner.</p></div>
+<div class="hb"><h4>Investor Highlights</h4>
+<ul>
+<li>Five of the six units fully renovated</li>
+<li>Soft-story (earthquake) retrofit completed; buyer inherits a structurally upgraded asset</li>
+<li>Additional upside through mark-to-market rents on unit turnover</li>
+<li>Office-to-ADU conversion potential: existing office space offers a future opportunity to add a studio ADU for incremental income</li>
+<li>Steps-from-sand Marina Peninsula location with exceptionally low inventory turnover</li>
+</ul></div>
 
-<div class="hb"><h4>Mid-Century Modern Architecture</h4>
-<p>Designed by a prominent Los Angeles architect &mdash; vaulted ceilings, floor-to-ceiling glass, and expansive open floor plans create light-filled, indoor-outdoor living. A large private roof terrace provides panoramic views, a premium amenity rarely available in Marina Peninsula rental housing.</p></div>
-
-<div class="hb"><h4>ADU Potential &mdash; Future Conversion Opportunity</h4>
-<p>The property&rsquo;s existing interior configuration presents an opportunity for a future ADU conversion. California&rsquo;s ADU regulations (AB 68 / AB 881) allow conversion ADUs within existing space without requiring additional parking or expanding the building footprint. The pro forma reflects $21,600 of annual ADU income upside &mdash; buyer to investigate after close.</p></div>
-
-<div class="hb"><h4>Gated Entry &bull; Covered Parking &bull; On-Site Laundry</h4>
-<p>Residents benefit from gated entry, on-site laundry facilities, and one covered parking space per unit &mdash; a complete amenity package that enhances both lifestyle and rental durability in a coastal walk-street setting.</p></div>
-
-<div class="hb"><h4>Venice Coastal Zone &mdash; Calvo Exclusion Area</h4>
-<p>The property lies within the Venice Coastal Zone (Marina Peninsula subarea) and is designated within the <strong>Calvo Exclusion Area</strong> &mdash; a Coastal Commission designation that simplifies future improvement permitting relative to standard coastal zone parcels.</p></div>
-
-<div class="hb"><h4>High-Demand Coastal Submarket</h4>
-<p>Walking and biking distance to Venice Beach, the Venice Canals, the Venice Fishing Pier, Marina del Rey Harbor, Burton Chace Park, Fisherman&rsquo;s Village, and the dining, shopping, and nightlife of Abbot Kinney Boulevard and Washington Boulevard. Sustained tenant demand, strong rent growth potential, and long-term appreciation.</p></div>
+<div class="hb"><h4>Location Highlights</h4>
+<ul>
+<li>Located in Marina del Rey on the exclusive Marina Peninsula, one of LA&rsquo;s most supply-constrained coastal rental submarkets</li>
+<li>Steps from the sand on the most private, pristine beach in Los Angeles</li>
+<li>Quiet, intimate beach-community setting on a beach walk street</li>
+<li>Walking distance to the Marina del Rey boat harbor</li>
+<li>Walking distance to the Venice Fishing Pier</li>
+<li>Walking distance to the iconic Venice Canals</li>
+<li>Minutes to the restaurants, shops, and nightlife of Washington Boulevard and Abbot Kinney Boulevard</li>
+</ul></div>
 
 </div>
 </div>
 
 <!-- ════ LOCATION OVERVIEW ════ -->
 <div class="section section-alt" id="location">
-<div class="section-title">Marina Peninsula &mdash; Location Overview</div>
+<div class="section-title">Location Overview</div>
 <div class="section-subtitle">A Beachfront Walk Street Within Steps of Marina del Rey&rsquo;s Premier Amenities</div>
 <div class="section-divider"></div>
 
 <div class="loc-hero"><img src="{context}" alt="3607 Pacific Avenue — Marina Del Rey context aerial showing Marina del Rey Harbor, Burton Chace Park, Fisherman's Village, Mothers Beach, and beach access"></div>
 
 <div class="narrative">
-<p>3607 Pacific Avenue occupies a rare position on the <strong>Marina Peninsula</strong> &mdash; a narrow strip of beachfront land between the Pacific Ocean to the west and the basins of Marina del Rey Harbor to the east. This is one of the most supply-constrained residential submarkets in coastal Los Angeles, defined by walk streets, low-density beach housing, and immediate access to both ocean and harbor amenities.</p>
+<h3 class="sub-heading">Marina del Rey &amp; the Marina Peninsula</h3>
+<p>Eastwind Apartments occupies one of the most coveted pieces of coastal Los Angeles real estate: the <strong>Marina Peninsula</strong> in Marina del Rey, a narrow strip of beachfront residential community wedged between the open Pacific Ocean and North America&rsquo;s largest man-made small-craft harbor. Marina del Rey is renowned as a premier destination for waterfront living and recreation, home to more than 5,000 boats and a vibrant collection of resort-style hotels, dockside dining, and outdoor recreation that includes sailing, kayaking, paddleboarding, and dining cruises. Located just four miles north of LAX and approximately twelve miles from downtown Los Angeles, the area pairs small-town coastal charm with immediate access to one of the nation&rsquo;s largest metropolitan economies. Land-based amenities include the 22-mile Marvin Braude Coastal Bike Trail, Burton Chace Park (a 10-acre harborfront park hosting free summer concerts), Mother&rsquo;s Beach, Fisherman&rsquo;s Village, and the Villa Marina and Waterside shopping and dining centers.</p>
 
-<p>Residents at 3607 Pacific Avenue are within walking and biking distance of:</p>
-<ul>
-<li><strong>The Pacific Ocean &amp; Venice Beach</strong> &mdash; direct beach access at the foot of Pacific Avenue</li>
-<li><strong>Marina del Rey Harbor</strong> &mdash; the largest man-made small-craft harbor in North America, with boating, dining, and waterfront retail</li>
-<li><strong>The Venice Fishing Pier</strong> &mdash; an iconic coastal landmark just north of the property</li>
-<li><strong>Mothers Beach</strong> &mdash; family-friendly calm-water beach within Marina del Rey Harbor</li>
-<li><strong>Burton Chace Park</strong> &mdash; waterfront park with summer concerts and harbor views</li>
-<li><strong>Fisherman&rsquo;s Village</strong> &mdash; waterfront dining and retail district</li>
-<li><strong>The Venice Boardwalk &amp; Ocean Front Walk</strong> &mdash; world-famous coastal promenade</li>
-<li><strong>The Venice Canals</strong> &mdash; historic residential canal neighborhood</li>
-<li><strong>Abbot Kinney Boulevard</strong> &mdash; one of the most celebrated retail and dining streets in Los Angeles</li>
-<li><strong>Washington Boulevard</strong> &mdash; established corridor with restaurants, bars, and shops</li>
-</ul>
+<p>The Marina Peninsula itself is defined by quiet, low-traffic walk streets, a powerful sense of neighborhood, and an architectural fabric dominated by single-family homes, small luxury condominiums, and a tightly held inventory of intimately scaled apartment buildings. Inventory turnover is exceptionally low; the combination of geographic constraint, restrictive zoning, and pride-of-ownership stewardship has made the Peninsula a true rarity among Westside rental submarkets.</p>
 
-<p>This combination of beach access, harbor amenities, and immediate proximity to Venice&rsquo;s cultural and commercial corridors creates a tenant demand profile that is consistently among the strongest in the Los Angeles rental market. Marina Peninsula has limited new development potential due to its coastal designation, supporting long-term rent growth and value appreciation.</p>
+<h3 class="sub-heading">Adjacent Venice</h3>
+<p>Immediately to the north, the Marina Peninsula flows into the iconic neighborhood of Venice. Founded in 1905 by Abbot Kinney as a coastal resort town and annexed by Los Angeles in 1926, Venice is one of the most culturally distinctive and economically vital neighborhoods in the Los Angeles metro. Known for its bohemian spirit, its world-famous Ocean Front Walk, its iconic canals, and its modernist residential architecture, Venice draws an estimated 28,000 to 30,000 visitors daily and more than ten million annually, a tourism engine that supports a deep, year-round demand base within walking distance of Eastwind. Abbot Kinney Boulevard, ranked among the most influential retail streets in the country, anchors the area&rsquo;s upscale lifestyle layer with stylish boutiques, artisanal coffee shops, and destination dining, while the Venice Canals, the Venice Fishing Pier, Muscle Beach, and the Venice Beach Recreation Center round out a recreational footprint few residential submarkets can match.</p>
 </div>
 </div>
 
@@ -428,7 +436,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="section-divider"></div>
 
 <div class="narrative">
-<p>3607 Pacific Avenue has been comprehensively renovated and brought into full compliance with Los Angeles seismic, building, and rent stabilization requirements. The largest single capital item for a 1964-era multifamily property &mdash; soft-story retrofit &mdash; was completed in March 2024 with a Certificate of Compliance issued by LADBS. Five of six units have been fully renovated.</p>
+<p>Eastwind Apartments has been comprehensively renovated and brought into full compliance with Los Angeles seismic, building, and rent stabilization requirements. The largest single capital item for a 1964-era multifamily property, the soft-story retrofit, was completed in March 2024 with a Certificate of Compliance issued by LADBS. Five of six units have been fully renovated, and in-unit laundry is being added throughout the building.</p>
 </div>
 
 <div class="ts ts-wide"><table>
@@ -441,10 +449,11 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <tr><td>Perimeter Block Wall</td><td><span class="badge-done">Completed</span></td><td>6-foot concrete block wall, 69 linear feet (8/13/2002)</td></tr>
 <tr><td>Electrical &mdash; Intercom</td><td><span class="badge-done">Completed</span></td><td>Low-voltage intercom conduits (4/3/2002)</td></tr>
 <tr><td>Gated Entry</td><td><span class="badge-done">In Place</span></td><td>Secured access controls common areas</td></tr>
-<tr><td>On-Site Laundry</td><td><span class="badge-done">In Place</span></td><td>Shared facility for residents</td></tr>
+<tr><td>In-Unit Laundry</td><td><span class="badge-opp">Being Added</span></td><td>In-unit laundry being added throughout the building</td></tr>
 <tr><td>Covered Parking</td><td><span class="badge-done">In Place</span></td><td>1 covered space per unit</td></tr>
-<tr><td>Private Roof Terrace</td><td><span class="badge-done">In Place</span></td><td>Large outdoor amenity with panoramic views</td></tr>
-<tr><td>ADU Conversion</td><td><span class="badge-opp">Future Opportunity</span></td><td>Interior conversion potential under California AB 68 / AB 881 &mdash; buyer to investigate post-close</td></tr>
+<tr><td>Private Roof Terraces</td><td><span class="badge-done">In Place</span></td><td>Four upstairs units, one large private roof terrace each</td></tr>
+<tr><td>Ground-Floor Patios</td><td><span class="badge-done">In Place</span></td><td>Two ground-level units, extraordinarily large private patios with direct beach-walk access</td></tr>
+<tr><td>Office-to-ADU Conversion</td><td><span class="badge-opp">Future Opportunity</span></td><td>Existing office space offers potential to add a studio ADU under California AB 68 / AB 881; buyer to investigate post-close</td></tr>
 </tbody></table></div>
 </div>
 
