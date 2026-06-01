@@ -668,6 +668,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div>
 <h3 class="sub-heading">Financing Assumption</h3>
 <table>
+<thead><tr><th style="width:50%">Term</th><th>Detail</th></tr></thead>
 <tbody>
 <tr><td style="font-weight:600;color:#1B3A5C;width:50%">Loan Amount</td><td>$2,697,500 (50% LTV)</td></tr>
 <tr><td style="font-weight:600;color:#1B3A5C">Loan Type</td><td><strong>Interest Only</strong></td></tr>
