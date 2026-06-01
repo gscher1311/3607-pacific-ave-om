@@ -409,6 +409,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="caption"><strong>3607 Pacific Avenue</strong> &nbsp;&bull;&nbsp; Marina Peninsula &nbsp;&bull;&nbsp; Steps to Venice Fishing Pier &amp; the Pacific Ocean</div>
 </div>
 
+<h3 class="sub-heading">Property at a Glance</h3>
 <div class="exec-facts two-col">
 <table class="it">
 <tr><td>Address</td><td>3607 Pacific Avenue, Marina del Rey, CA 90292</td></tr>
