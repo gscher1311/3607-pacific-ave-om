@@ -396,7 +396,7 @@ table{{page-break-inside:auto}}
 <div class="mc"><span class="mv">$5,395,000</span><span class="ml">Offering Price</span></div>
 <div class="mc"><span class="mv">$899,167</span><span class="ml">Price Per Unit</span></div>
 <div class="mc"><span class="mv">4.75% / 5.60%</span><span class="ml">Cap Rate &mdash; Yr 1 / Pro Forma</span></div>
-<div class="mc"><span class="mv">14.28x</span><span class="ml">GRM &mdash; Year 1</span></div>
+<div class="mc"><span class="mv">14.28x / 13.34x</span><span class="ml">GRM &mdash; Yr 1 / Pro Forma</span></div>
 </div>
 
 <p class="exec-intro">
