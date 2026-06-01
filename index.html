@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Eastwind Apartments | 3607 Pacific Avenue | Investment Offering | Marcus &amp; Millichap</title>
 <meta name="description" content="Eastwind Apartments — 3607 Pacific Avenue, a renovated six-unit beach-front offering on the Marina Peninsula in Marina del Rey, steps from the sand. $5,395,000.">
+<!-- Define the Maps callback BEFORE the API loads so it can never race; API still starts fetching from <head> in parallel. Real drawing runs whenever both the API and the page body are ready (either order). -->
+<script>function initMaps(){window.__mapsReady=true;if(window.__drawMaps)window.__drawMaps();}</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FbBfb4q0FVpiMSHBhjERp_R2lP3wDE8&callback=initMaps&loading=async&v=weekly"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -728,8 +731,8 @@ function gmIWHtml(title, body, address){
   return '<div class="gm-iw"><strong>' + title + '</strong><br>' + body + '<br><a class="gm-link" href="' + gmap + '" target="_blank" rel="noopener">View in Google Maps</a></div>';
 }
 
-// Single callback for both maps, fired by Google Maps JS API on load
-function initMaps(){
+// Builds both maps; runs when API + body are both ready (see head stub)
+function __drawMaps(){
   var subjectPos = { lat: 33.976940, lng: -118.463554 };
   var subjectAddr = '3607 Pacific Ave, Marina Del Rey, CA 90292';
 
@@ -821,7 +824,7 @@ function initMaps(){
     });
   });
 }
+window.__drawMaps = __drawMaps;
+if (window.__mapsReady) __drawMaps();  // API already fired its callback before this script ran
 </script>
-<!-- Maps API loaded last so initMaps is always defined before the callback fires (avoids the race on this image-heavy single-file page) -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FbBfb4q0FVpiMSHBhjERp_R2lP3wDE8&callback=initMaps&loading=async&v=weekly"></script>
 </body></html>
