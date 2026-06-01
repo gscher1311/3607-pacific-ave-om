@@ -323,23 +323,90 @@ table{{font-size:12px}}thead th{{font-size:10px;padding:8px 6px}}tbody td{{paddi
 .download-btn{{padding:10px 14px;font-size:11px;bottom:18px;right:14px}}
 }}
 
-/* ════ PRINT ════ */
+/* ════ PRINT / PDF — Letter LANDSCAPE (rendered by LAAA-AI-Prompts/reporting/build_pdf.py) ════ */
 @media print{{
-@page{{margin:0.6in 0.5in}}
+/* build_pdf.py (Playwright) is authoritative for page size/margins/footer; this @page is only a
+   fallback for browser window.print(). ALL pages landscape — never mixed portrait/landscape. */
+@page{{size:Letter landscape;margin:0.45in 0.5in 0.65in}}
+html,body{{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 .toc-nav{{display:none!important}}
 .download-btn{{display:none!important}}
+/* Interactive Google maps hide; build_pdf injects a static-map <img> (.pdf-static-map) into each
+   .gmap container. The text fallback shows ONLY when static-map generation fails. */
 .gmap{{display:none!important}}
-.map-fallback{{display:block!important}}
-.cover{{min-height:auto;page-break-after:always}}
-.section{{page-break-before:always}}
+.pdf-static-map{{display:block!important;margin:0 auto 16px;text-align:center}}
+.pdf-static-map img{{height:3.3in;width:auto;max-width:100%;display:inline-block;border:1px solid #d8dee6;border-radius:6px}}
+.map-fallback{{display:block;color:#666;font-style:italic;margin-bottom:18px}}
+.map-fallback.is-replaced{{display:none!important}}
+/* Cover = exactly ONE landscape page (fixed height + clip beats the screen 100svh rule) */
+.cover{{min-height:0!important;height:7in!important;max-height:7in!important;overflow:hidden;page-break-after:always}}
+.cover-bg{{filter:brightness(.5)}}
+.cover-content{{padding:24px 40px}}
+/* One section per page; first section follows the cover break (no blank page between) */
+.section{{page-break-before:always;padding:16px 0;max-width:none}}
+.section:first-of-type{{page-break-before:avoid}}
+.section-title{{font-size:23px;margin-bottom:4px}}
+.section-subtitle{{margin-bottom:8px}}
+.section-divider{{margin:0 auto 14px}}
+/* Tables: repeat headers, keep rows whole, let the body flow across pages */
 thead{{display:table-header-group}}
+tfoot{{display:table-footer-group}}
 tr{{page-break-inside:avoid}}
+table{{page-break-inside:auto;font-size:11px}}
+thead th{{font-size:9.5px;padding:7px 6px}}
+tbody td{{padding:6px 6px}}
 h2,h3,.section-title,.sub-heading{{page-break-after:avoid}}
 p{{orphans:3;widows:3}}
-table{{page-break-inside:auto}}
-.hb-grid{{grid-template-columns:1fr}}
-.feat-row,.feat-row.rev{{flex-direction:column;gap:14px}}
-.feat-row{{page-break-inside:avoid}}
+.narrative{{margin-bottom:14px}}
+.narrative p{{margin-bottom:10px}}
+/* Scroll-wrapped tables must reveal full width in print (no clip), fit the landscape page */
+.ts,.ts-wide,.ts-wider{{overflow:visible!important}}
+.ts table,.ts-wide table,.ts-wider table{{min-width:0!important;width:100%!important}}
+.ts-wider table{{font-size:9.5px}}
+.ts-wider thead th{{font-size:8.5px;padding:6px 4px}}
+.ts-wider tbody td{{padding:5px 4px}}
+/* Wide detail tables (Building Systems, Rent Roll) flow naturally; the repeating header
+   (thead display:table-header-group) makes a multi-page table read as one continuous table. */
+.ts-wide table{{font-size:9.5px}}
+.ts-wide thead th{{font-size:8.5px;padding:5px 4px}}
+.ts-wide tbody td{{padding:4px 4px}}
+/* Regulatory table: compact so the full ~18-row table + LARSO callout fit one page (no orphan tail) */
+.reg table{{font-size:9px}}
+.reg thead th{{font-size:8px;padding:4px 6px}}
+.reg tbody td{{padding:3px 6px}}
+/* Metric cards + photos: keep landscape multi-column, never split a block across a page break */
+.mg4{{grid-template-columns:repeat(5,1fr);gap:8px;page-break-inside:avoid}}
+.mc{{padding:12px 8px}}.mv{{font-size:17px}}.ml{{font-size:9px}}
+.photo-grid{{grid-template-columns:repeat(2,1fr);gap:8px;page-break-inside:avoid;margin-bottom:16px}}
+.photo-grid img{{height:2.3in}}
+.exec-aerial,.loc-hero{{page-break-inside:avoid;margin-bottom:16px}}
+.exec-aerial img{{height:4in;object-fit:cover}}
+.loc-hero img{{height:4in;object-fit:cover}}
+.cn{{page-break-inside:avoid;margin:10px 0;padding:12px 16px}}
+/* Keep the contact/footer block whole on one page (logo + agents + disclaimer cohesive) */
+.footer{{page-break-inside:avoid}}
+/* Keep the "Property at a Glance" heading with its facts table (no orphaned heading), and give the
+   fact rows more presence so the page reads as an intentional fact sheet rather than a sparse top strip */
+.exec-glance{{page-break-inside:avoid}}
+.exec-glance .it{{font-size:13px}}
+.exec-glance .it td{{padding:13px 14px}}
+/* exec-facts + returns/financing two-col stay side-by-side (fit landscape), just don't split */
+.exec-facts,.two-col{{page-break-inside:avoid}}
+/* Investment Highlights: PRESERVE the website's alternating side-by-side image+text rows in the PDF.
+   Each row stays a flex pair with fixed image heights and break-inside:avoid so it never splits across
+   a page boundary - selective layout, NOT a global flatten. */
+.feat{{display:block}}
+.feat-row,.feat-row.rev{{display:flex;gap:22px;align-items:center;page-break-inside:avoid;margin-bottom:20px}}
+.feat-row.rev{{flex-direction:row-reverse}}
+.feat-imgs{{flex:0 0 45%;display:grid;grid-template-columns:1fr;gap:8px;margin:0}}
+.feat-imgs.two{{grid-template-columns:1fr 1fr}}
+.feat-imgs img{{height:2.6in;width:100%;object-fit:cover}}
+.feat-imgs.two img{{height:2.4in}}
+.feat-text{{flex:1}}
+.feat-text h4{{margin-bottom:8px}}
+.feat-text li{{margin-bottom:5px;line-height:1.5}}
+.hb-grid{{display:block}}
+.hb{{page-break-inside:avoid;margin-bottom:12px}}
 }}
 </style>
 </head>
@@ -405,6 +472,7 @@ table{{page-break-inside:auto}}
 <div class="caption"><strong>3607 Pacific Avenue</strong> &nbsp;&bull;&nbsp; Marina Peninsula &nbsp;&bull;&nbsp; Steps to Venice Fishing Pier &amp; the Pacific Ocean</div>
 </div>
 
+<div class="exec-glance">
 <h3 class="sub-heading">Property at a Glance</h3>
 <div class="exec-facts two-col">
 <table class="it">
@@ -423,6 +491,7 @@ table{{page-break-inside:auto}}
 <tr><td>Zoning</td><td>R3-1 &mdash; LARSO + AB 1482</td></tr>
 <tr><td>Offering Type</td><td>Standard / Stabilized</td></tr>
 </table>
+</div>
 </div>
 </div>
 
@@ -569,7 +638,7 @@ table{{page-break-inside:auto}}
 <div class="section-subtitle">Los Angeles &bull; Venice Coastal Zone &bull; Marina Peninsula Subarea</div>
 <div class="section-divider"></div>
 
-<div class="ts"><table>
+<div class="ts reg"><table>
 <thead><tr><th>Item</th><th>Status / Detail</th></tr></thead>
 <tbody>
 <tr><td>Zoning</td><td>R3-1 (Multifamily Residential)</td></tr>
@@ -688,7 +757,7 @@ table{{page-break-inside:auto}}
 <div class="section-divider"></div>
 
 <div id="saleMap" class="gmap"></div>
-<p class="map-fallback">Interactive map available at the live URL.</p>
+<p class="map-fallback">Map image unavailable &mdash; view the interactive map at the live listing URL.</p>
 
 <div class="ts ts-wider"><table class="fin-r5">
 <thead><tr><th>#</th><th>Property</th><th>City</th><th>Date</th><th>Price</th><th>Units</th><th>$/Unit</th><th>$/SF</th><th>Cap</th><th>GRM</th><th>Yr Built</th></tr></thead>
@@ -721,7 +790,7 @@ table{{page-break-inside:auto}}
 <div class="section-divider"></div>
 
 <div id="rentMap" class="gmap"></div>
-<p class="map-fallback">Interactive map available at the live URL.</p>
+<p class="map-fallback">Map image unavailable &mdash; view the interactive map at the live listing URL.</p>
 
 <div class="ts"><table class="fin-r5">
 <thead><tr><th>#</th><th>Property</th><th>City / ZIP</th><th>Unit Type</th><th>Size SF</th><th>Rent</th><th>Rent/SF</th></tr></thead>
@@ -863,15 +932,44 @@ function gmIWHtml(title, body, address){{
   return '<div class="gm-iw"><strong>' + title + '</strong><br>' + body + '<br><a class="gm-link" href="' + gmap + '" target="_blank" rel="noopener">View in Google Maps</a></div>';
 }}
 
+// ── Map data: single source for the interactive Google maps AND the static-map PDF specs ──
+var __SUBJECT = {{ lat: 33.976940, lng: -118.463554, addr: '3607 Pacific Ave, Marina Del Rey, CA 90292' }};
+var __SALE_VIEW = {{ center: {{ lat: 33.983, lng: -118.467 }}, zoom: 14 }};
+var __RENT_VIEW = {{ center: {{ lat: 33.978, lng: -118.465 }}, zoom: 15 }};
+var __SALE_COMPS = [
+    [33.984375, -118.465351, 'A', '440 Howland Canal (Venice)', '5 Units &bull; $2.135M &bull; 4.38% Cap &bull; 1924', '440 Howland Canal, Venice, CA 90291'],
+    [33.978540, -118.463526, 'B', '124 Catamaran St (Marina Del Rey)', '7 Units &bull; $2.775M &bull; 5.05% Cap &bull; 1970', '124 Catamaran St, Marina Del Rey, CA 90292'],
+    [33.978198, -118.464361, 'C', '101 Catamaran St (Marina Del Rey)', '6 Units &bull; $3.0M &bull; 5.71% Cap &bull; 1964', '101 Catamaran St, Marina Del Rey, CA 90292'],
+    [33.976375, -118.463222, 'D', '16 Fleet St (Marina Del Rey)', '10 Units &bull; $4.825M &bull; 3.90% Cap &bull; 1971', '16 Fleet St, Marina Del Rey, CA 90292'],
+    [33.989251, -118.471904, 'E', '1426 Main St (Venice)', '7 Units &bull; $4.565M &bull; 6.72% Cap &bull; 1962', '1426 Main St, Venice, CA 90291'],
+    [33.986827, -118.464876, 'F', '2201 Ocean Ave (Venice)', '10 Units &bull; $4.75M &bull; 5.68% Cap &bull; 1975', '2201 Ocean Ave, Venice, CA 90291'],
+    [33.994493, -118.474506, 'G', '315 Vernon Ave (Venice)', '6 Units &bull; $5.05M &bull; 5.04% Cap &bull; 1922', '315 Vernon Ave, Venice, CA 90291']
+  ];
+var __RENT_COMPS = [
+    [33.975401, -118.462194, '1', '3900 Pacific Avenue', '2BR/1BA &bull; 1,000 SF &bull; $5,500', '3900 Pacific Ave, Marina Del Rey, CA 90292'],
+    [33.977516, -118.463835, '2', '3512 Pacific Avenue', '2BR/2BA &bull; 917 SF &bull; $5,500', '3512 Pacific Ave, Marina Del Rey, CA 90292'],
+    [33.979560, -118.467177, '3', '3003 Ocean Front Walk', '2BR/1BA &bull; 700 SF &bull; $5,500', '3003 Ocean Front Walk, Venice, CA 90291']
+  ];
+// Static-map contract consumed by build_pdf.py (LAAA-AI-Prompts/reporting/build_pdf.py). Any BOV/OM
+// page that wants static maps in its PDF publishes:
+//   window.__STATIC_MAP_SPECS = [{{targetId, center, zoom, markers:[{{lat,lng,color,label,subject}}]}}]
+function __compMarker(c){{ return {{ lat: c[0], lng: c[1], color: '0x1B3A5C', label: c[2] }}; }}
+window.__STATIC_MAP_SPECS = [
+  {{ targetId: 'saleMap', center: __SALE_VIEW.center, zoom: __SALE_VIEW.zoom,
+     markers: [{{ lat: __SUBJECT.lat, lng: __SUBJECT.lng, color: '0xC5A258', subject: true }}].concat(__SALE_COMPS.map(__compMarker)) }},
+  {{ targetId: 'rentMap', center: __RENT_VIEW.center, zoom: __RENT_VIEW.zoom,
+     markers: [{{ lat: __SUBJECT.lat, lng: __SUBJECT.lng, color: '0xC5A258', subject: true }}].concat(__RENT_COMPS.map(__compMarker)) }}
+];
+
 // Builds both maps; runs when API + body are both ready (see head stub)
 function __drawMaps(){{
-  var subjectPos = {{ lat: 33.976940, lng: -118.463554 }};
-  var subjectAddr = '3607 Pacific Ave, Marina Del Rey, CA 90292';
+  var subjectPos = {{ lat: __SUBJECT.lat, lng: __SUBJECT.lng }};
+  var subjectAddr = __SUBJECT.addr;
 
   // ── Sale Comps Map ──
   var saleMap = new google.maps.Map(document.getElementById('saleMap'), {{
-    center: {{ lat: 33.983, lng: -118.467 }},
-    zoom: 14,
+    center: __SALE_VIEW.center,
+    zoom: __SALE_VIEW.zoom,
     mapTypeId: 'roadmap',
     mapTypeControl: true,
     mapTypeControlOptions: {{ style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR, position: google.maps.ControlPosition.TOP_LEFT }},
@@ -892,15 +990,7 @@ function __drawMaps(){{
     saleIW.open(saleMap, this);
   }});
 
-  var saleComps = [
-    [33.984375, -118.465351, 'A', '440 Howland Canal (Venice)', '5 Units &bull; $2.135M &bull; 4.38% Cap &bull; 1924', '440 Howland Canal, Venice, CA 90291'],
-    [33.978540, -118.463526, 'B', '124 Catamaran St (Marina Del Rey)', '7 Units &bull; $2.775M &bull; 5.05% Cap &bull; 1970', '124 Catamaran St, Marina Del Rey, CA 90292'],
-    [33.978198, -118.464361, 'C', '101 Catamaran St (Marina Del Rey)', '6 Units &bull; $3.0M &bull; 5.71% Cap &bull; 1964', '101 Catamaran St, Marina Del Rey, CA 90292'],
-    [33.976375, -118.463222, 'D', '16 Fleet St (Marina Del Rey)', '10 Units &bull; $4.825M &bull; 3.90% Cap &bull; 1971', '16 Fleet St, Marina Del Rey, CA 90292'],
-    [33.989251, -118.471904, 'E', '1426 Main St (Venice)', '7 Units &bull; $4.565M &bull; 6.72% Cap &bull; 1962', '1426 Main St, Venice, CA 90291'],
-    [33.986827, -118.464876, 'F', '2201 Ocean Ave (Venice)', '10 Units &bull; $4.75M &bull; 5.68% Cap &bull; 1975', '2201 Ocean Ave, Venice, CA 90291'],
-    [33.994493, -118.474506, 'G', '315 Vernon Ave (Venice)', '6 Units &bull; $5.05M &bull; 5.04% Cap &bull; 1922', '315 Vernon Ave, Venice, CA 90291']
-  ];
+  var saleComps = __SALE_COMPS;
   saleComps.forEach(function(c){{
     var marker = new google.maps.Marker({{
       position: {{ lat: c[0], lng: c[1] }},
@@ -916,8 +1006,8 @@ function __drawMaps(){{
 
   // ── Rent Comps Map ──
   var rentMap = new google.maps.Map(document.getElementById('rentMap'), {{
-    center: {{ lat: 33.978, lng: -118.465 }},
-    zoom: 15,
+    center: __RENT_VIEW.center,
+    zoom: __RENT_VIEW.zoom,
     mapTypeId: 'roadmap',
     mapTypeControl: true,
     mapTypeControlOptions: {{ style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR, position: google.maps.ControlPosition.TOP_LEFT }},
@@ -938,11 +1028,7 @@ function __drawMaps(){{
     rentIW.open(rentMap, this);
   }});
 
-  var rentComps = [
-    [33.975401, -118.462194, '1', '3900 Pacific Avenue', '2BR/1BA &bull; 1,000 SF &bull; $5,500', '3900 Pacific Ave, Marina Del Rey, CA 90292'],
-    [33.977516, -118.463835, '2', '3512 Pacific Avenue', '2BR/2BA &bull; 917 SF &bull; $5,500', '3512 Pacific Ave, Marina Del Rey, CA 90292'],
-    [33.979560, -118.467177, '3', '3003 Ocean Front Walk', '2BR/1BA &bull; 700 SF &bull; $5,500', '3003 Ocean Front Walk, Venice, CA 90291']
-  ];
+  var rentComps = __RENT_COMPS;
   rentComps.forEach(function(c){{
     var marker = new google.maps.Marker({{
       position: {{ lat: c[0], lng: c[1] }},
@@ -958,6 +1044,9 @@ function __drawMaps(){{
 }}
 window.__drawMaps = __drawMaps;
 if (window.__mapsReady) __drawMaps();  // API already fired its callback before this script ran
+
+// PDF readiness flag — build_pdf.py waits for this (if present) before printing.
+(function(){{ function r(){{ window.__PDF_READY = true; }} if (document.readyState === 'complete') r(); else window.addEventListener('load', r); }})();
 </script>
 </body></html>'''
 

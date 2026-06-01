@@ -1,0 +1,6 @@
+{
+  "_comment": "Per-site PDF config for the canonical generator LAAA-AI-Prompts/reporting/build_pdf.py. Render with:  python C:/Users/gscher/LAAA-AI-Prompts/reporting/build_pdf.py --config C:/Users/gscher/3607-pacific-ave-om/pdf.config.json   (paths below resolve relative to this file). All other behavior (Letter landscape, footer, static maps via GOOGLE_MAPS_SERVER_KEY) uses the tool defaults.",
+  "target": "index.html",
+  "out": "3607-Pacific-Ave-OM.pdf",
+  "doc_type": "om"
+}
