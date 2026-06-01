@@ -166,9 +166,9 @@ html{{scroll-behavior:smooth;scroll-padding-top:50px}}
 .sub-heading{{font-size:18px;font-weight:600;color:#1B3A5C;margin:30px 0 14px;border-bottom:2px solid #C5A258;padding-bottom:6px;display:inline-block}}
 
 /* ════ EXECUTIVE SUMMARY METRIC CARDS ════ */
-.mg4{{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px}}
+.mg4{{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:30px}}
 .mc{{background:#1B3A5C;color:#fff;border-radius:8px;padding:22px 16px;text-align:center;box-shadow:0 2px 8px rgba(27,58,92,.12)}}
-.mv{{font-size:28px;font-weight:700;color:#C5A258;display:block;line-height:1.1;white-space:nowrap;font-variant-numeric:tabular-nums}}
+.mv{{font-size:23px;font-weight:700;color:#C5A258;display:block;line-height:1.1;white-space:nowrap;font-variant-numeric:tabular-nums}}
 .ml{{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:6px;display:block;color:rgba(255,255,255,.85)}}
 @media(max-width:1024px){{.mg4{{grid-template-columns:repeat(2,1fr);gap:14px}}.mv{{font-size:24px}}}}
 
@@ -395,6 +395,7 @@ table{{page-break-inside:auto}}
 <div class="mg4">
 <div class="mc"><span class="mv">$5,395,000</span><span class="ml">Offering Price</span></div>
 <div class="mc"><span class="mv">$899,167</span><span class="ml">Price Per Unit</span></div>
+<div class="mc"><span class="mv">$957.58</span><span class="ml">Price / SF</span></div>
 <div class="mc"><span class="mv">4.75% / 5.60%</span><span class="ml">Cap Rate &mdash; Yr 1 / Pro Forma</span></div>
 <div class="mc"><span class="mv">14.28x / 13.34x</span><span class="ml">GRM &mdash; Yr 1 / Pro Forma</span></div>
 </div>
