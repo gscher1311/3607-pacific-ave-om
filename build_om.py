@@ -703,6 +703,8 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <tr><td>E</td><td>1426 Main St</td><td>Venice</td><td>06/26/2025</td><td>$4,565,000</td><td>7</td><td>$652,142</td><td>$693.03</td><td>6.72%</td><td>10.12</td><td>1962</td></tr>
 <tr><td>F</td><td>2201 Ocean Ave</td><td>Venice</td><td>07/29/2025</td><td>$4,750,000</td><td>10</td><td>$475,000</td><td>$338.68</td><td>5.68%</td><td>11.44</td><td>1975</td></tr>
 <tr><td>G</td><td>315 Vernon Ave</td><td>Venice</td><td>05/02/2025</td><td>$5,050,000</td><td>6</td><td>$841,666</td><td>$1,046.42</td><td>5.04%</td><td>13.89</td><td>1922</td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="6">Average &mdash; 7 closed comps</td><td style="text-align:right">$539,248</td><td style="text-align:right">$679.06</td><td style="text-align:right">5.21%</td><td style="text-align:right">13.41</td><td></td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="6">Median</td><td style="text-align:right">$482,500</td><td style="text-align:right">$600.12</td><td style="text-align:right">5.05%</td><td style="text-align:right">13.36</td><td></td></tr>
 </tbody></table></div>
 
 <div class="narrative">
@@ -730,6 +732,8 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <tr><td>1</td><td>3900 Pacific Avenue</td><td>Marina Del Rey 90292</td><td>2BR/1BA</td><td>1,000</td><td>$5,500</td><td>$5.50</td></tr>
 <tr><td>2</td><td>3512 Pacific Avenue</td><td>Marina Del Rey 90292</td><td>2BR/2BA</td><td>917</td><td>$5,500</td><td>$6.00</td></tr>
 <tr><td>3</td><td>3003 Ocean Front Walk</td><td>Venice 90291</td><td>2BR/1BA</td><td>700</td><td>$5,500</td><td>$7.86</td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="4">Average &mdash; 3 comps</td><td style="text-align:right">872</td><td style="text-align:right">$5,500</td><td style="text-align:right">$6.45</td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="4">Median</td><td style="text-align:right">917</td><td style="text-align:right">$5,500</td><td style="text-align:right">$6.00</td></tr>
 </tbody></table></div>
 
 <div class="narrative">
