@@ -60,6 +60,31 @@ hs_filip  = png_b64(os.path.join(BRAND, 'headshots', 'Filip_Niculete.png'), 200)
 hs_yoni   = png_b64(os.path.join(HEADSHOTS_SQ, 'Jonathan SQ.png'), 200)
 print("Done encoding.")
 
+# ── Social-share (Open Graph) card ──────────────────────────────────────────
+# Link unfurls (iMessage, email, Slack, WhatsApp, LinkedIn) need a REAL hosted
+# image file + og:image meta tags — base64-inlined images can't be scraped.
+# Domain is read from CNAME so this block is reusable for any BOV/OM build.
+REPO = os.path.dirname(OUT)
+try:
+    with open(os.path.join(REPO, 'CNAME'), encoding='utf-8') as _f: DOMAIN = _f.read().strip()
+except Exception: DOMAIN = ''
+SITE_URL = f'https://{DOMAIN}' if DOMAIN else ''
+OG_IMG_URL = f'{SITE_URL}/og.jpg'
+
+def make_og(src, dst, w=1200, h=630, q=86):
+    """Cover-crop a hero photo to a 1200x630 social-share card."""
+    im = Image.open(src)
+    if im.mode != 'RGB': im = im.convert('RGB')
+    sr, ir = w/h, im.width/im.height
+    if ir > sr:
+        nw = int(im.height*sr); x = (im.width-nw)//2; im = im.crop((x, 0, x+nw, im.height))
+    else:
+        nh = int(im.width/sr); y = (im.height-nh)//2; im = im.crop((0, y, im.width, y+nh))
+    im.resize((w, h), Image.LANCZOS).save(dst, format='JPEG', quality=q, optimize=True)
+
+make_og(os.path.join(PRO, 'DJI_20260529063433_0274_D.JPG'), os.path.join(REPO, 'og.jpg'))
+print(f"Wrote og.jpg ({OG_IMG_URL})")
+
 html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +92,23 @@ html = f'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Eastwind Apartments | 3607 Pacific Avenue | Investment Offering | Marcus &amp; Millichap</title>
 <meta name="description" content="Eastwind Apartments — 3607 Pacific Avenue, a renovated six-unit beach-front offering on the Marina Peninsula in Marina del Rey, steps from the sand. $5,395,000.">
+<link rel="canonical" href="{SITE_URL}/">
+<!-- Open Graph / Twitter share card (link preview thumbnail) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LAAA Team">
+<meta property="og:title" content="Eastwind Apartments | 3607 Pacific Avenue | Investment Offering">
+<meta property="og:description" content="A renovated six-unit beach-front offering on the Marina Peninsula in Marina del Rey, steps from the sand. $5,395,000.">
+<meta property="og:url" content="{SITE_URL}/">
+<meta property="og:image" content="{OG_IMG_URL}">
+<meta property="og:image:secure_url" content="{OG_IMG_URL}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Eastwind Apartments, 3607 Pacific Avenue, Marina del Rey">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eastwind Apartments | 3607 Pacific Avenue">
+<meta name="twitter:description" content="A renovated six-unit beach-front offering on the Marina Peninsula, steps from the sand. $5,395,000.">
+<meta name="twitter:image" content="{OG_IMG_URL}">
 <!-- Define the Maps callback BEFORE the API loads so it can never race; API still starts fetching from <head> in parallel. Real drawing runs whenever both the API and the page body are ready (either order). -->
 <script>function initMaps(){{window.__mapsReady=true;if(window.__drawMaps)window.__drawMaps();}}</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1FbBfb4q0FVpiMSHBhjERp_R2lP3wDE8&callback=initMaps&loading=async&v=weekly"></script>
@@ -96,10 +138,24 @@ html{{scroll-behavior:smooth;scroll-padding-top:50px}}
 .cover-nyse{{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.45);margin-top:8px;text-transform:uppercase}}
 
 /* ════ TOC NAV ════ */
-.toc-nav{{background:#1B3A5C;padding:0 20px;display:flex;flex-wrap:nowrap;gap:0;justify-content:center;align-items:stretch;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);overflow-x:auto;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent 100%);-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent 100%)}}
-.toc-nav a{{color:rgba(255,255,255,.7);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:14px 12px;border-bottom:2px solid transparent;transition:all .2s ease;white-space:nowrap;display:flex;align-items:center;min-height:44px}}
-.toc-nav a:hover{{color:#fff;background:rgba(197,162,88,.12);border-bottom-color:rgba(197,162,88,.4)}}
-.toc-nav a.toc-active{{color:#C5A258;font-weight:600;border-bottom-color:#C5A258}}
+.toc-nav{{background:#1B3A5C;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}}
+.toc-links{{display:flex;flex-wrap:nowrap;justify-content:center;align-items:stretch;padding:0 20px;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+.toc-links a{{color:rgba(255,255,255,.7);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;padding:14px 12px;border-bottom:2px solid transparent;transition:all .2s ease;white-space:nowrap;display:flex;align-items:center;min-height:44px}}
+.toc-links a:hover{{color:#fff;background:rgba(197,162,88,.12);border-bottom-color:rgba(197,162,88,.4)}}
+.toc-links a.toc-active{{color:#C5A258;font-weight:600;border-bottom-color:#C5A258}}
+/* Hamburger toggle — hidden on desktop, shown when the row can't fit */
+.nav-toggle{{display:none}}
+@media(max-width:960px){{
+  .nav-toggle{{display:flex;align-items:center;gap:10px;width:100%;background:#1B3A5C;color:#fff;border:none;cursor:pointer;padding:14px 18px;min-height:50px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}}
+  .nav-toggle .nav-burger{{font-size:16px;line-height:1}}
+  .nav-toggle .nav-label{{flex:1;text-align:left}}
+  .nav-toggle .nav-caret{{transition:transform .2s ease}}
+  .toc-nav.open .nav-toggle .nav-caret{{transform:rotate(180deg)}}
+  .toc-links{{display:none;flex-direction:column;padding:0;max-height:72vh;overflow-y:auto;overflow-x:hidden;border-top:1px solid rgba(255,255,255,.12)}}
+  .toc-nav.open .toc-links{{display:flex}}
+  .toc-links a{{width:100%;padding:15px 18px;min-height:50px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08)}}
+  .toc-links a.toc-active{{background:rgba(197,162,88,.14)}}
+}}
 
 /* ════ SECTIONS ════ */
 .section{{padding:50px 40px;max-width:1100px;margin:0 auto}}
@@ -140,6 +196,9 @@ tbody td{{padding:9px 8px;border-bottom:1px solid #e0e0e0}}
 /* For Rent Roll which has unit + type as first 2 cols */
 .fin-num-2 td,.fin-num-2 th{{font-variant-numeric:tabular-nums}}
 .fin-num-2 td:not(:first-child):not(:nth-child(2)),.fin-num-2 th:not(:first-child):not(:nth-child(2)){{text-align:right}}
+/* Comps tables: label cols 1-4 left, numbers right-aligned from col 5 on */
+.fin-r5 td,.fin-r5 th{{font-variant-numeric:tabular-nums}}
+.fin-r5 td:nth-child(n+5),.fin-r5 th:nth-child(n+5){{text-align:right}}
 tbody tr:nth-child(even){{background:#f5f5f5}}
 tbody tr.hl{{background:#FFF8E7;border-left:3px solid #C5A258;border-right:3px solid #C5A258;font-weight:600}}
 tbody tr.hl td{{border-bottom-color:#C5A258}}
@@ -312,6 +371,8 @@ table{{page-break-inside:auto}}
 
 <!-- ════ TOC NAV ════ -->
 <nav class="toc-nav" id="toc-nav">
+<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="toc-links"><span class="nav-burger" aria-hidden="true">&#9776;</span><span class="nav-label">Sections</span><span class="nav-caret" aria-hidden="true">&#9662;</span></button>
+<div class="toc-links" id="toc-links">
 <a href="#summary">Summary</a>
 <a href="#overview">Overview</a>
 <a href="#highlights">Highlights</a>
@@ -322,6 +383,7 @@ table{{page-break-inside:auto}}
 <a href="#sale-comps">Sale Comps</a>
 <a href="#rent-comps">Rent Comps</a>
 <a href="#contact">Contact</a>
+</div>
 </nav>
 
 <!-- ════ EXECUTIVE SUMMARY ════ -->
@@ -554,8 +616,8 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <tr><td>4</td><td>2 Bed / 1 Bath</td><td>900</td><td>$5,145</td><td>$5.72</td><td>$5,500</td><td>$6.11</td></tr>
 <tr><td>5</td><td>2 Bed / 1 Bath</td><td>900</td><td>$4,945</td><td>$5.49</td><td>$5,400</td><td>$6.00</td></tr>
 <tr><td>6</td><td>2 Bed / 1 Bath</td><td>900</td><td>$4,845</td><td>$5.38</td><td>$5,400</td><td>$6.00</td></tr>
-<tr style="font-weight:700;background:#e8edf3"><td colspan="2">Total / Wtd Avg</td><td>5,634</td><td>$31,480</td><td>$5.59</td><td>$33,700</td><td>$5.98</td></tr>
-<tr style="font-weight:700;background:#e8edf3"><td colspan="3">Gross Annualized Rents</td><td colspan="2">$377,760</td><td colspan="2">$404,400</td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="2">Total / Wtd Avg</td><td style="text-align:right">5,634</td><td style="text-align:right">$31,480</td><td style="text-align:right">$5.59</td><td style="text-align:right">$33,700</td><td style="text-align:right">$5.98</td></tr>
+<tr style="font-weight:700;background:#e8edf3"><td colspan="3">Gross Annualized Rents</td><td style="text-align:right">$377,760</td><td></td><td style="text-align:right">$404,400</td><td></td></tr>
 </tbody></table></div>
 
 <h3 class="sub-heading">Operating Statement</h3>
@@ -590,7 +652,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="two-col" style="margin-top:30px">
 <div>
 <h3 class="sub-heading">Returns at $5,395,000</h3>
-<table>
+<table class="fin-num">
 <thead><tr><th>Metric</th><th>Year 1</th><th>Pro Forma</th></tr></thead>
 <tbody>
 <tr><td>Cap Rate</td><td>4.75%</td><td style="color:#2E7D32;font-weight:600">5.60%</td></tr>
@@ -629,7 +691,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div id="saleMap" class="gmap"></div>
 <p class="map-fallback">Interactive map available at the live URL.</p>
 
-<div class="ts ts-wider"><table class="fin-num-2">
+<div class="ts ts-wider"><table class="fin-r5">
 <thead><tr><th>#</th><th>Property</th><th>City</th><th>Date</th><th>Price</th><th>Units</th><th>$/Unit</th><th>$/SF</th><th>Cap</th><th>GRM</th><th>Yr Built</th></tr></thead>
 <tbody>
 <tr class="hl"><td>&star;</td><td><strong>3607 Pacific Avenue</strong></td><td><strong>Marina Del Rey</strong></td><td>On Market</td><td><strong>$5,395,000</strong></td><td><strong>6</strong></td><td><strong>$899,167</strong></td><td><strong>$957.58</strong></td><td><strong>4.75%</strong></td><td><strong>14.28</strong></td><td><strong>1964/2025</strong></td></tr>
@@ -660,7 +722,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div id="rentMap" class="gmap"></div>
 <p class="map-fallback">Interactive map available at the live URL.</p>
 
-<div class="ts"><table>
+<div class="ts"><table class="fin-r5">
 <thead><tr><th>#</th><th>Property</th><th>City / ZIP</th><th>Unit Type</th><th>Size SF</th><th>Rent</th><th>Rent/SF</th></tr></thead>
 <tbody>
 <tr class="hl"><td>&star;</td><td><strong>3607 Pacific Avenue (Subject)</strong></td><td><strong>Marina Del Rey 90292</strong></td><td><strong>2BR/1BA</strong></td><td><strong>900</strong></td><td><strong>$5,617 PF Avg</strong></td><td><strong>$6.24</strong></td></tr>
@@ -709,7 +771,7 @@ Additional rent comparables and current LARSO compliance documentation are avail
 </div>
 
 </div>
-<div class="fo">16830 Ventura Blvd, Ste. 100, Encino, CA 91436 &nbsp;|&nbsp; <a href="https://marcusmillichap.com/laaa-team">marcusmillichap.com/laaa-team</a></div>
+<div class="fo">16830 Ventura Blvd, Ste. 100, Encino, CA 91436 &nbsp;|&nbsp; <a href="https://laaa.com">laaa.com</a></div>
 <div class="fd">This information has been secured from sources we believe to be reliable, but we make no representations or warranties, expressed or implied, as to the accuracy of the information. Buyer must verify the information and bears all risk for any inaccuracies. Any rent or income information in this offering memorandum, with the exception of actual historical rent collections, represents good-faith projections of potential future rent only, and Marcus &amp; Millichap makes no representations as to whether such rent may actually be attainable. Marcus &amp; Millichap Real Estate Investment Services, Inc. | License: CA 01930580.</div>
 </div>
 
@@ -729,10 +791,19 @@ if(client){{
   if(el)el.textContent='Prepared Exclusively for '+client;
 }}
 
-// Smooth scroll for TOC
-document.querySelectorAll('.toc-nav a').forEach(function(link){{
+// Mobile nav: tap-to-open menu (collapsed hamburger on narrow screens)
+var navWrap=document.getElementById('toc-nav'), navToggle=document.getElementById('navToggle');
+if(navToggle){{navToggle.addEventListener('click',function(){{
+  var open=navWrap.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open?'true':'false');
+}});}}
+
+// Smooth scroll for TOC (closes the mobile menu first so the offset is correct)
+document.querySelectorAll('.toc-links a').forEach(function(link){{
   link.addEventListener('click',function(e){{
     e.preventDefault();
+    navWrap.classList.remove('open');
+    if(navToggle)navToggle.setAttribute('aria-expanded','false');
     var t=document.querySelector(this.getAttribute('href'));
     if(t){{
       var h=document.getElementById('toc-nav').offsetHeight;
@@ -742,7 +813,7 @@ document.querySelectorAll('.toc-nav a').forEach(function(link){{
 }});
 
 // Active TOC link highlighting
-var tocLinks=document.querySelectorAll('.toc-nav a'),tocSections=[];
+var tocLinks=document.querySelectorAll('.toc-links a'),tocSections=[];
 tocLinks.forEach(function(l){{
   var id=l.getAttribute('href').substring(1);
   var s=document.getElementById(id);
