@@ -13,6 +13,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # ── Paths ────────────────────────────────────────────────────────────────
 BTS = r"C:\Users\gscher\OneDrive - Marcus & Millichap\Niculete, Filip's files - LAAA Team\Marketing Packages\3607 Pacific Ave\BTS Docs"
+PRO = os.path.join(BTS, 'Pictures', 'Professional Pictures')   # new professional shoot (drone + DSLR)
+SELLER = os.path.join(BTS, 'Seller Pictures')                  # staged interiors + common areas
 ERSTER_PICS = r"C:\Users\gscher\OneDrive - Marcus & Millichap\Niculete, Filip's files - LAAA Team\Proposals\Old Team Member Proposals\Erster's Proposals\2024\3607 Pacific Ave\Pics"
 BRAND = r"C:\Users\gscher\LAAA-AI-Prompts\branding"
 HEADSHOTS_SQ = r"C:\Users\gscher\OneDrive - Marcus & Millichap\Niculete, Filip's files - LAAA Team\LAAA\Team Headshots\SQ"
@@ -34,17 +36,23 @@ def png_b64(path, max_w=600):
     return f'data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}'
 
 print("Encoding images ...")
-# Cover background — beautiful property exterior, darkened in CSS
-cover_bg  = img_b64(os.path.join(ERSTER_PICS, 'main.png'), 1800, 82)
-# Executive Summary callout — labeled aerial close-up showing subject parcel
-exec_aerial = img_b64(os.path.join(BTS, '3607-pacific-aerial-hero-closeup.png'), 1700, 82)
-# Location Overview hero — wide Marina Del Rey context aerial
-context   = img_b64(os.path.join(BTS, '3607-pacific-marina-context-aerial.png'), 1700, 82)
-# Property photo grid (4)
-g_main    = img_b64(os.path.join(ERSTER_PICS, 'main.png'), 1400, 78)
-g_kitchen = img_b64(os.path.join(ERSTER_PICS, 'Dining and kitchen.png'), 1400, 78)
-g_patio   = img_b64(os.path.join(ERSTER_PICS, 'garden patio.png'), 1400, 78)
-g_sunset  = img_b64(os.path.join(ERSTER_PICS, 'sunset.png'), 1400, 78)
+# Cover — hero twilight drone aerial (building centered, beach + ocean + sunset)
+cover_bg  = img_b64(os.path.join(PRO, 'DJI_20260529063433_0274_D.JPG'), 1800, 82)
+# Executive Summary — top-down close of the asset (roof terraces + patio)
+exec_aerial = img_b64(os.path.join(PRO, 'DJI_20260529064047_0281_D.JPG'), 1700, 82)
+# Location Overview hero — wide Marina Peninsula / harbor / coastline (twilight)
+context   = img_b64(os.path.join(PRO, 'DJI_20260529063935_0280_D.JPG'), 1700, 82)
+# Investment Overview photo grid (4)
+g_main    = img_b64(os.path.join(PRO, 'DJI_20260529064304_0284_D.JPG'), 1400, 78)  # twilight street elevation
+g_kitchen = img_b64(os.path.join(SELLER, '8.jpg'), 1400, 78)   # open living/dining, wall-to-wall glass
+g_patio   = img_b64(os.path.join(SELLER, '9.jpg'), 1400, 78)   # double-height living, architecture
+g_sunset  = img_b64(os.path.join(SELLER, '6.jpg'), 1400, 78)   # ground-floor beach patio
+# Investment Highlights — paired feature-row images
+feat_unit_a = img_b64(os.path.join(SELLER, '7.jpg'), 1400, 78)   # renovated kitchen (waterfall quartz island)
+feat_unit_b = img_b64(os.path.join(SELLER, '5.jpg'), 1400, 78)   # private roof terrace
+feat_common = img_b64(os.path.join(PRO, 'DSC02705.jpg'), 1400, 78)  # gated entry + Gelman architecture
+feat_invest = img_b64(os.path.join(PRO, 'DJI_20260529063815_0277_D.JPG'), 1400, 78)  # aerial: asset + pier + ocean
+feat_loc    = img_b64(os.path.join(SELLER, '2.jpg'), 1400, 78)   # beach-access walk street
 # Brand
 logo      = png_b64(os.path.join(BRAND, 'logos', 'LAAA_Team_White.png'), 400)
 hs_glen   = png_b64(os.path.join(BRAND, 'headshots', 'Glen_Scher.png'), 200)
@@ -160,6 +168,20 @@ tbody tr.hl td{{border-bottom-color:#C5A258}}
 .hb li{{font-size:13px;line-height:1.6;color:rgba(255,255,255,.92);margin-bottom:7px}}
 .hb li:last-child{{margin-bottom:0}}
 
+/* ════ PAIRED IMAGE + TEXT FEATURE ROWS (Investment Highlights) ════ */
+.feat{{margin:18px 0 8px}}
+.feat-row{{display:flex;gap:30px;align-items:center;margin-bottom:30px}}
+.feat-row:last-child{{margin-bottom:0}}
+.feat-row.rev{{flex-direction:row-reverse}}
+.feat-imgs{{flex:1 1 50%;display:grid;grid-template-columns:1fr;gap:10px}}
+.feat-imgs.two{{grid-template-columns:1fr 1fr}}
+.feat-imgs img{{width:100%;height:280px;object-fit:cover;display:block;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.15)}}
+.feat-text{{flex:1 1 50%}}
+.feat-text h4{{color:#1B3A5C;font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;border-bottom:2px solid #C5A258;padding-bottom:6px;display:inline-block}}
+.feat-text ul{{margin:0 0 0 18px;padding:0}}
+.feat-text li{{font-size:14px;line-height:1.65;color:#444;margin-bottom:8px}}
+.feat-text li:last-child{{margin-bottom:0}}
+
 /* ════ LOCATION HERO ════ */
 .loc-hero{{width:100%;display:block;border-radius:8px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.18);margin-bottom:24px}}
 .loc-hero img{{width:100%;height:auto;display:block}}
@@ -215,6 +237,8 @@ tbody tr.hl td{{border-bottom-color:#C5A258}}
 .photo-grid{{grid-template-columns:1fr}}.photo-grid img{{height:240px}}
 .two-col{{grid-template-columns:1fr;gap:20px}}
 .hb-grid{{grid-template-columns:1fr}}
+.feat-row,.feat-row.rev{{flex-direction:column;gap:16px}}
+.feat-imgs img{{height:240px}}
 .mg4{{grid-template-columns:repeat(2,1fr);gap:12px}}.mc{{padding:16px 10px}}.mv{{font-size:22px}}
 .exec-facts{{grid-template-columns:1fr;gap:0}}
 .footer-team{{flex-direction:column;align-items:center;gap:24px}}
@@ -253,6 +277,8 @@ h2,h3,.section-title,.sub-heading{{page-break-after:avoid}}
 p{{orphans:3;widows:3}}
 table{{page-break-inside:auto}}
 .hb-grid{{grid-template-columns:1fr}}
+.feat-row,.feat-row.rev{{flex-direction:column;gap:14px}}
+.feat-row{{page-break-inside:avoid}}
 }}
 </style>
 </head>
@@ -310,11 +336,11 @@ table{{page-break-inside:auto}}
 </div>
 
 <p class="exec-intro">
-Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to present <strong>Eastwind Apartments</strong> at <strong>3607 Pacific Avenue</strong>, a rare architectural six-unit beach-front offering on the Marina Peninsula in Marina del Rey. Designed by renowned Los Angeles architect Ellis Gelman, this contemporary property combines coastal walk-street privacy with steps-to-the-sand proximity, gated entry, one covered parking space per unit, private roof terraces for the four upstairs units, and extraordinarily large beach-access patios for the two ground-floor units, with in-unit laundry being added throughout. Five of six units have been fully renovated, the soft-story seismic retrofit was completed in March 2024, and the property is offered at <strong>$5,395,000</strong> with a 4.75% in-place cap rate and a 5.60% pro forma cap rate.
+Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to present <strong>Eastwind Apartments</strong> at <strong>3607 Pacific Avenue</strong>, a rare architectural six-unit beach-front offering on the Marina Peninsula in Marina del Rey. Designed by renowned Los Angeles architect Ellis Gelman, this contemporary property combines coastal walk-street privacy with steps-to-the-sand proximity, gated entry, one private parking space per unit, private roof terraces for the four upstairs units, and extraordinarily large beach-access patios for the two ground-floor units, with in-unit laundry in four of the six units and being added to the remaining two on move-out. The building has been improved through an extensive capital-improvement program, the soft-story seismic retrofit was completed in March 2024, and the property is offered at <strong>$5,395,000</strong> with a 4.75% in-place cap rate and a 5.60% pro forma cap rate.
 </p>
 
 <div class="exec-aerial">
-<img src="{exec_aerial}" alt="3607 Pacific Avenue — aerial showing subject parcel highlighted on the Marina Peninsula adjacent to the Venice Fishing Pier and Pacific Ocean">
+<img src="{exec_aerial}" alt="3607 Pacific Avenue — aerial of the subject building showing private roof terraces and beach-walk patios on the Marina Peninsula">
 <div class="caption"><strong>3607 Pacific Avenue</strong> &nbsp;&bull;&nbsp; Marina Peninsula &nbsp;&bull;&nbsp; Steps to Venice Fishing Pier &amp; the Pacific Ocean</div>
 </div>
 
@@ -345,18 +371,18 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="section-divider"></div>
 
 <div class="photo-grid">
-<img src="{g_main}" alt="3607 Pacific Avenue exterior">
-<img src="{g_kitchen}" alt="Renovated interior — dining and kitchen">
-<img src="{g_patio}" alt="Garden patio amenity">
-<img src="{g_sunset}" alt="Marina Peninsula sunset view">
+<img src="{g_main}" alt="3607 Pacific Avenue — twilight street elevation">
+<img src="{g_kitchen}" alt="Open living and dining with floor-to-ceiling, wall-to-wall glass">
+<img src="{g_patio}" alt="Double-height living space — Ellis Gelman architecture">
+<img src="{g_sunset}" alt="Ground-floor private patio with beach-walk access">
 </div>
 
 <div class="narrative">
 <p>The LAAA Team at Marcus &amp; Millichap is proud to present <strong>Eastwind Apartments</strong>, a rare architectural six-unit beach-front offering located in the heart of Marina del Rey, California, on the highly coveted <strong>Marina Peninsula</strong>, one of the most supply-constrained and sought-after coastal rental submarkets in Los Angeles. Designed by renowned Los Angeles architect Ellis Gelman, Eastwind showcases a timeless contemporary aesthetic that sets it apart from typical coastal multifamily inventory, sitting just steps from the sand on what is widely regarded as the most private and pristine stretch of beach in Los Angeles. Set within a unique beach community, the property is within walking distance of restaurants and shops, the Marina del Rey boat harbor, the Venice Fishing Pier, and the iconic Venice Canals. This is a generational opportunity to acquire a true pride-of-ownership coastal asset that simply cannot be replicated in today&rsquo;s market.</p>
 
-<p>Built in 1964 and improved through an extensive capital-improvement program, Eastwind is comprised of six spacious 2 bed / 1 bath units averaging 925 square feet each, configured as two ground-level residences with extraordinarily large private patios offering direct, private access to the beach walk, and four upstairs residences each with its own large private roof terrace. Five of the six units have been fully renovated, with bright, open floor plans framed by floor-to-ceiling, wall-to-wall glass and appointed with modern European-style kitchens featuring stainless steel appliances and quartz countertops, along with wood flooring throughout. The property also benefits from a completed soft-story seismic retrofit, gated entry, one covered parking space per unit, and in-unit laundry being added throughout the building. Eastwind is delivered in excellent condition.</p>
+<p>Built in 1964 and improved through an extensive capital-improvement program, Eastwind is comprised of six spacious 2 bed / 1 bath units averaging 925 square feet each, configured as two ground-level residences with extraordinarily large private patios offering direct, private access to the beach walk, and four upstairs residences each with its own large private roof terrace. All units have bright, open floor plans framed by floor-to-ceiling, wall-to-wall glass and appointed with modern European-style kitchens featuring stainless steel appliances and quartz countertops, along with wood flooring throughout. The property also benefits from a completed soft-story seismic retrofit, gated entry, one private parking space per unit, and in-unit laundry in four of the six units, with laundry being added to the remaining two on move-out. Eastwind is delivered in excellent condition.</p>
 
-<p>Eastwind&rsquo;s location is what makes it truly irreplaceable. Residents enjoy a quiet, intimate beach-community setting within walking distance of the Marina del Rey boat harbor, the Venice Fishing Pier, the iconic Venice Canals, and the restaurants and shops of Washington Boulevard and Abbot Kinney. For investors, the offering pairs a Gelman architectural pedigree and rare beach-walk frontage with a clear path to additional upside: continued mark-to-market on unit turnover, the lease-up of recently renovated units, and the future optionality to convert the building&rsquo;s existing office space into a studio ADU for incremental income. Positioned on the Marina Peninsula in one of Southern California&rsquo;s most rent-stable coastal submarkets, Eastwind offers sustained tenant demand, durable long-term value, and a quality of asset that properties on this beach simply do not bring to market.</p>
+<p>Eastwind&rsquo;s location is what makes it truly irreplaceable. Residents enjoy a quiet, intimate beach-community setting within walking distance of the Marina del Rey boat harbor, the Venice Fishing Pier, the iconic Venice Canals, and the restaurants and shops of Washington Boulevard and Abbot Kinney. For investors, the offering pairs a Gelman architectural pedigree and rare beach-walk frontage with a clear path to additional upside: continued mark-to-market on unit turnover and the lease-up of recently renovated units. Positioned on the Marina Peninsula in one of Southern California&rsquo;s most rent-stable coastal submarkets, Eastwind offers sustained tenant demand, durable long-term value, and a quality of asset that properties on this beach simply do not bring to market.</p>
 </div>
 </div>
 
@@ -366,46 +392,64 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="section-subtitle">Key Opportunity Drivers</div>
 <div class="section-divider"></div>
 
-<div class="hb-grid">
+<div class="feat">
 
-<div class="hb"><h4>Unit Amenities</h4>
+<div class="feat-row">
+<div class="feat-imgs two">
+<img src="{feat_unit_a}" alt="Renovated unit kitchen — European-style cabinetry, stainless steel appliances, quartz countertops">
+<img src="{feat_unit_b}" alt="Private roof terrace — one of four upstairs units">
+</div>
+<div class="feat-text"><h4>Unit Amenities</h4>
 <ul>
 <li>Bright units with floor-to-ceiling, wall-to-wall glass throughout</li>
 <li>European-style kitchens with stainless steel appliances and quartz countertops</li>
 <li>Wood flooring throughout</li>
-<li>Spacious 2 bed / 1 bath floor plans averaging 925 square feet</li>
-<li>Ground-level units feature extraordinarily large private patios with direct, private access to the beach walk</li>
+<li>Spacious 2 bed / 1 bath floor plans; ground-level units feature extraordinarily large private patios with direct, private access to the beach walk</li>
 <li>Upstairs units feature large private roof terraces (one per unit, four total)</li>
+<li>Four units have in-unit laundry; laundry being added to the remaining two upon move-out</li>
 </ul></div>
+</div>
 
-<div class="hb"><h4>Common-Area Amenities</h4>
+<div class="feat-row rev">
+<div class="feat-imgs">
+<img src="{feat_common}" alt="Gated entry and Ellis Gelman contemporary architecture at 3607 Pacific Avenue">
+</div>
+<div class="feat-text"><h4>Common-Area Amenities</h4>
 <ul>
 <li>Outstanding contemporary architecture by renowned Los Angeles architect Ellis Gelman</li>
 <li>Gated entry with secured access</li>
-<li>One covered parking space per unit</li>
-<li>In-unit laundry being added throughout the building</li>
+<li>One private parking space per unit</li>
 <li>Building well-maintained and delivered in excellent condition</li>
 </ul></div>
+</div>
 
-<div class="hb"><h4>Investor Highlights</h4>
+<div class="feat-row">
+<div class="feat-imgs">
+<img src="{feat_invest}" alt="Aerial view — the subject asset steps from the sand beside the Venice Fishing Pier and Pacific Ocean">
+</div>
+<div class="feat-text"><h4>Investor Highlights</h4>
 <ul>
-<li>Five of the six units fully renovated</li>
 <li>Soft-story (earthquake) retrofit completed; buyer inherits a structurally upgraded asset</li>
 <li>Additional upside through mark-to-market rents on unit turnover</li>
-<li>Office-to-ADU conversion potential: existing office space offers a future opportunity to add a studio ADU for incremental income</li>
+<li>Subject to required jurisdictional approvals, the office and laundry space can be converted into an ADU for additional income; a seventh parking space is available to serve the ADU</li>
 <li>Steps-from-sand Marina Peninsula location with exceptionally low inventory turnover</li>
 </ul></div>
+</div>
 
-<div class="hb"><h4>Location Highlights</h4>
+<div class="feat-row rev">
+<div class="feat-imgs">
+<img src="{feat_loc}" alt="Beach-access walk street steps from the sand on the Marina Peninsula">
+</div>
+<div class="feat-text"><h4>Location Highlights</h4>
 <ul>
 <li>Located in Marina del Rey on the exclusive Marina Peninsula, one of LA&rsquo;s most supply-constrained coastal rental submarkets</li>
 <li>Steps from the sand on the most private, pristine beach in Los Angeles</li>
-<li>Quiet, intimate beach-community setting on a beach walk street</li>
 <li>Walking distance to the Marina del Rey boat harbor</li>
 <li>Walking distance to the Venice Fishing Pier</li>
 <li>Walking distance to the iconic Venice Canals</li>
-<li>Minutes to the restaurants, shops, and nightlife of Washington Boulevard and Abbot Kinney Boulevard</li>
+<li>Walking distance to the restaurants, shops, and nightlife of Washington Boulevard, and minutes to the restaurants, shops, and nightlife of Abbot Kinney Boulevard</li>
 </ul></div>
+</div>
 
 </div>
 </div>
@@ -436,24 +480,24 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 <div class="section-divider"></div>
 
 <div class="narrative">
-<p>Eastwind Apartments has been comprehensively renovated and brought into full compliance with Los Angeles seismic, building, and rent stabilization requirements. The largest single capital item for a 1964-era multifamily property, the soft-story retrofit, was completed in March 2024 with a Certificate of Compliance issued by LADBS. Five of six units have been fully renovated, and in-unit laundry is being added throughout the building.</p>
+<p>Eastwind Apartments has been comprehensively renovated and brought into full compliance with Los Angeles seismic, building, and rent stabilization requirements. The largest single capital item for a 1964-era multifamily property, the soft-story retrofit, was completed in March 2024 with a Certificate of Compliance issued by LADBS. The units have been renovated with modern European-style kitchens, quartz countertops, stainless steel appliances, and wood flooring; in-unit laundry is in place in four of the six units and is being added to the remaining two on move-out.</p>
 </div>
 
 <div class="ts ts-wide"><table>
 <thead><tr><th>System / Improvement</th><th>Status</th><th>Detail</th></tr></thead>
 <tbody>
 <tr><td>Soft-Story Seismic Retrofit</td><td><span class="badge-done">Completed</span></td><td>Certificate of Compliance issued 3/26/2024 (LADBS Permit 23016-10000-30898) &mdash; LABC Ch. 93 wood shear wall</td></tr>
-<tr><td>Unit Renovations</td><td><span class="badge-done">5 of 6 Complete</span></td><td>European-style kitchens, quartz countertops, stainless steel appliances, wood flooring</td></tr>
+<tr><td>Unit Renovations</td><td><span class="badge-done">Completed</span></td><td>European-style kitchens, quartz countertops, stainless steel appliances, wood flooring throughout</td></tr>
 <tr><td>Roof / Reroof</td><td><span class="badge-done">Completed</span></td><td>Reroof + hot-mop work; permit finalized 1/22/2004</td></tr>
 <tr><td>Windows &amp; Doors</td><td><span class="badge-done">Completed</span></td><td>Window and door replacement; permit finalized 1/22/2004</td></tr>
 <tr><td>Perimeter Block Wall</td><td><span class="badge-done">Completed</span></td><td>6-foot concrete block wall, 69 linear feet (8/13/2002)</td></tr>
 <tr><td>Electrical &mdash; Intercom</td><td><span class="badge-done">Completed</span></td><td>Low-voltage intercom conduits (4/3/2002)</td></tr>
 <tr><td>Gated Entry</td><td><span class="badge-done">In Place</span></td><td>Secured access controls common areas</td></tr>
-<tr><td>In-Unit Laundry</td><td><span class="badge-opp">Being Added</span></td><td>In-unit laundry being added throughout the building</td></tr>
-<tr><td>Covered Parking</td><td><span class="badge-done">In Place</span></td><td>1 covered space per unit</td></tr>
+<tr><td>In-Unit Laundry</td><td><span class="badge-done">4 of 6 In Place</span></td><td>Four units have in-unit laundry; laundry being added to the remaining two upon move-out</td></tr>
+<tr><td>Parking</td><td><span class="badge-done">In Place</span></td><td>1 private space per unit</td></tr>
 <tr><td>Private Roof Terraces</td><td><span class="badge-done">In Place</span></td><td>Four upstairs units, one large private roof terrace each</td></tr>
 <tr><td>Ground-Floor Patios</td><td><span class="badge-done">In Place</span></td><td>Two ground-level units, extraordinarily large private patios with direct beach-walk access</td></tr>
-<tr><td>Office-to-ADU Conversion</td><td><span class="badge-opp">Future Opportunity</span></td><td>Existing office space offers potential to add a studio ADU under California AB 68 / AB 881; buyer to investigate post-close</td></tr>
+<tr><td>Office-to-ADU Conversion</td><td><span class="badge-opp">Future Opportunity</span></td><td>Subject to required jurisdictional approvals, the office and laundry space can be converted into an ADU for additional income; a seventh parking space is available to serve the ADU. Buyer to investigate post-close</td></tr>
 </tbody></table></div>
 </div>
 
@@ -624,7 +668,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 </tbody></table></div>
 
 <div class="narrative">
-<p>The three closest comparable 2BR rentals on the Marina Peninsula and adjacent Venice corridors all achieve <strong>$5,500/month</strong>. The subject&rsquo;s pro forma rents (averaging $5,617/month, $6.24/SF) reflect modest upside above the immediate market &mdash; supported by the property&rsquo;s renovated interiors, architectural pedigree, private roof terrace, gated entry, and one covered parking space per unit. The closest direct comparable, <strong>3003 Ocean Front Walk</strong>, achieves $7.86/SF &mdash; demonstrating the rent premium achievable for ocean-proximate 2BR product in this submarket.</p>
+<p>The three closest comparable 2BR rentals on the Marina Peninsula and adjacent Venice corridors all achieve <strong>$5,500/month</strong>. The subject&rsquo;s pro forma rents (averaging $5,617/month, $6.24/SF) reflect modest upside above the immediate market &mdash; supported by the property&rsquo;s renovated interiors, architectural pedigree, private roof terrace, gated entry, and one private parking space per unit. The closest direct comparable, <strong>3003 Ocean Front Walk</strong>, achieves $7.86/SF &mdash; demonstrating the rent premium achievable for ocean-proximate 2BR product in this submarket.</p>
 <p>Current in-place rents at the subject average $5,247/month ($5.83/SF), with the highest in-place unit at $5,850/month ($6.50/SF). Per-unit rents range from $4,845 to $5,850 reflecting unit-level finish variations and tenancy duration.</p>
 </div>
 <div class="cn">
