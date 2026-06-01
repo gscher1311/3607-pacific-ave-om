@@ -400,10 +400,6 @@ table{{page-break-inside:auto}}
 <div class="mc"><span class="mv">14.28x / 13.34x</span><span class="ml">GRM &mdash; Yr 1 / Pro Forma</span></div>
 </div>
 
-<p class="exec-intro">
-Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to present <strong>Eastwind Apartments</strong> at <strong>3607 Pacific Avenue</strong>, a rare architectural six-unit beach-front offering on the Marina Peninsula in Marina del Rey. Designed by renowned Los Angeles architect Ellis Gelman, this contemporary property combines coastal walk-street privacy with steps-to-the-sand proximity, gated entry, one private parking space per unit, private roof terraces for the four upstairs units, and extraordinarily large beach-access patios for the two ground-floor units, with in-unit laundry in four of the six units and being added to the remaining two on move-out. The building has been improved through an extensive capital-improvement program, the soft-story seismic retrofit was completed in March 2024, and the property is offered at <strong>$5,395,000</strong> with a 4.75% in-place cap rate and a 5.60% pro forma cap rate.
-</p>
-
 <div class="exec-aerial">
 <img src="{exec_aerial}" alt="3607 Pacific Avenue — aerial steps from the sand beside the Venice Fishing Pier and the Pacific Ocean">
 <div class="caption"><strong>3607 Pacific Avenue</strong> &nbsp;&bull;&nbsp; Marina Peninsula &nbsp;&bull;&nbsp; Steps to Venice Fishing Pier &amp; the Pacific Ocean</div>
@@ -782,11 +778,7 @@ Additional rent comparables and current LARSO compliance documentation are avail
 <div class="fd">This information has been secured from sources we believe to be reliable, but we make no representations or warranties, expressed or implied, as to the accuracy of the information. Buyer must verify the information and bears all risk for any inaccuracies. Any rent or income information in this offering memorandum, with the exception of actual historical rent collections, represents good-faith projections of potential future rent only, and Marcus &amp; Millichap makes no representations as to whether such rent may actually be attainable. Marcus &amp; Millichap Real Estate Investment Services, Inc. | License: CA 01930580.</div>
 </div>
 
-<!-- ════ DOWNLOAD PDF BUTTON ════ -->
-<button class="download-btn" onclick="window.print()" title="Download as PDF">
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-<span>Download PDF</span>
-</button>
+<!-- Download PDF button removed 2026-06-01 — print/PDF output (page breaks, maps) needs a proper print stylesheet first; re-add when fixed. -->
 
 <!-- ════ JAVASCRIPT ════ -->
 <script>
