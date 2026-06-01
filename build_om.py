@@ -7,7 +7,7 @@ Coordinates: U.S. Census Bureau geocoder (Public_AR_Current).
 """
 
 import base64, os, io, sys
-from PIL import Image, ImageDraw
+from PIL import Image
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
@@ -28,22 +28,6 @@ def img_b64(path, max_w=1600, q=80):
     buf = io.BytesIO(); im.save(buf, format='JPEG', quality=q, optimize=True)
     return f'data:image/jpeg;base64,{base64.b64encode(buf.getvalue()).decode()}'
 
-def img_b64_box(path, box_frac, max_w=1700, q=82, stroke_frac=0.0022, color=(230,30,30)):
-    """Encode like img_b64, but first draw a property-outline rectangle.
-    box_frac = (x0,y0,x1,y1) as fractions of full image dimensions."""
-    im = Image.open(path)
-    if im.mode in ('RGBA','P','LA'): im = im.convert('RGB')
-    W, H = im.size
-    x0,y0,x1,y1 = [int(f*d) for f,d in zip(box_frac,(W,H,W,H))]
-    st = max(3, int(W*stroke_frac))
-    d = ImageDraw.Draw(im)
-    for i in range(st):
-        d.rectangle([x0-i, y0-i, x1+i, y1+i], outline=color)
-    if im.width > max_w:
-        r = max_w/im.width; im = im.resize((max_w, int(im.height*r)), Image.LANCZOS)
-    buf = io.BytesIO(); im.save(buf, format='JPEG', quality=q, optimize=True)
-    return f'data:image/jpeg;base64,{base64.b64encode(buf.getvalue()).decode()}'
-
 def png_b64(path, max_w=600):
     im = Image.open(path)
     if im.width > max_w:
@@ -54,9 +38,8 @@ def png_b64(path, max_w=600):
 print("Encoding images ...")
 # Cover — hero twilight drone aerial (building centered, beach + ocean + sunset)
 cover_bg  = img_b64(os.path.join(PRO, 'DJI_20260529063433_0274_D.JPG'), 1800, 82)
-# Executive Summary — ocean-facing aerial with the subject property outlined
-exec_aerial = img_b64_box(os.path.join(PRO, 'DJI_20260529062131_0265_D.jpg'),
-                          (0.425, 0.727, 0.503, 0.839), 1700, 82)
+# Executive Summary — ocean-facing aerial (Venice Pier + Pacific in frame)
+exec_aerial = img_b64(os.path.join(PRO, 'DJI_20260529062131_0265_D.jpg'), 1700, 82)
 # Location Overview hero — wide neighborhood + Marina harbor context
 context   = img_b64(os.path.join(PRO, 'DJI_20260529061949_0262_D.jpg'), 1700, 82)
 # Investment Overview photo grid (4)
@@ -359,7 +342,7 @@ Marcus &amp; Millichap, in cooperation with The Erster Group, is proud to presen
 </p>
 
 <div class="exec-aerial">
-<img src="{exec_aerial}" alt="3607 Pacific Avenue — aerial with the subject property outlined, steps from the sand beside the Venice Fishing Pier and the Pacific Ocean">
+<img src="{exec_aerial}" alt="3607 Pacific Avenue — aerial steps from the sand beside the Venice Fishing Pier and the Pacific Ocean">
 <div class="caption"><strong>3607 Pacific Avenue</strong> &nbsp;&bull;&nbsp; Marina Peninsula &nbsp;&bull;&nbsp; Steps to Venice Fishing Pier &amp; the Pacific Ocean</div>
 </div>
 
