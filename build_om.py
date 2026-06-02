@@ -220,6 +220,28 @@ tbody tr.hl td{{border-bottom-color:#C5A258}}
 .cn{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 20px;margin:20px 0;border-radius:0 4px 4px 0;font-size:13px;color:#555;line-height:1.65}}
 .cn strong{{color:#1B3A5C}}
 
+/* ════ PRINT-AWARE SECTION PATTERNS (canonical §F — LAAA-AI-Prompts/reporting/bovom_required_standards.md) ════ */
+/* F3: takeaway modifier on the existing .cn callout */
+.cn.takeaway{{border-left-width:5px}}
+.cn.takeaway::before{{content:"TAKEAWAY";display:block;margin-bottom:5px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:#C5A258}}
+/* F1: pull-quote / investment-thesis callout */
+.pq{{margin:28px 0;padding:30px 34px 30px 56px;background:#1B3A5C;color:#fff;border-radius:8px;position:relative}}
+.pq::before{{content:"“";position:absolute;top:8px;left:18px;font-family:Georgia,'Times New Roman',serif;font-size:60px;line-height:1;color:#C5A258;opacity:.6}}
+.pq p{{margin:0;font-size:20px;line-height:1.5;font-weight:500;color:#fff}}
+.pq cite{{display:block;margin-top:14px;font-style:normal;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#C5A258}}
+/* F2: key-stat tile row (value/label colors matched to this OM's .mc metric cards) */
+.stat-row{{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0}}
+.stat{{flex:1 1 0;min-width:150px;background:#1B3A5C;border-radius:8px;padding:20px 16px;text-align:center;box-shadow:0 2px 8px rgba(27,58,92,.12)}}
+.stat-v{{display:block;font-size:23px;font-weight:700;color:#C5A258;line-height:1.1;white-space:nowrap;font-variant-numeric:tabular-nums}}
+.stat-l{{display:block;margin-top:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.85)}}
+/* F4: designed fact-panel */
+.fact-panel{{margin:0;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden}}
+.fact-panel table{{width:100%;border-collapse:collapse;margin:0;font-size:13px}}
+.fact-panel td{{padding:11px 16px;border-bottom:1px solid #eee}}
+.fact-panel tr:last-child td{{border-bottom:none}}
+.fact-panel tr:nth-child(even){{background:#f7f9fb}}
+.fact-panel td:first-child{{width:42%;font-weight:600;color:#1B3A5C}}
+
 /* ════ HIGHLIGHT BOXES (compact) ════ */
 .hb-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:24px 0}}
 .hb{{background:#1B3A5C;color:#fff;border-radius:8px;padding:22px 24px}}
@@ -385,13 +407,21 @@ p{{orphans:3;widows:3}}
 .cn{{page-break-inside:avoid;margin:10px 0;padding:12px 16px}}
 /* Keep the contact/footer block whole on one page (logo + agents + disclaimer cohesive) */
 .footer{{page-break-inside:avoid}}
-/* Keep the "Property at a Glance" heading with its facts table (no orphaned heading), and give the
-   fact rows more presence so the page reads as an intentional fact sheet rather than a sparse top strip */
+/* Keep the "Property at a Glance" heading with its fact panels (no orphaned heading) */
 .exec-glance{{page-break-inside:avoid}}
-.exec-glance .it{{font-size:13px}}
-.exec-glance .it td{{padding:13px 14px}}
 /* exec-facts + returns/financing two-col stay side-by-side (fit landscape), just don't split */
 .exec-facts,.two-col{{page-break-inside:avoid}}
+/* §F print-aware patterns: each block stays whole; type/spacing scaled down for landscape */
+.pq{{page-break-inside:avoid;margin:14px 0;padding:18px 22px 18px 44px}}
+.pq::before{{font-size:44px;top:4px}}
+.pq p{{font-size:15px;line-height:1.45}}
+.stat-row{{gap:8px;margin:12px 0;page-break-inside:avoid}}
+.stat{{padding:12px 8px}}
+.stat-v{{font-size:17px}}
+.stat-l{{font-size:9px}}
+.fact-panel{{page-break-inside:avoid;margin:0}}
+.fact-panel table{{font-size:13px}}
+.fact-panel td{{padding:13px 14px}}
 /* Investment Highlights: PRESERVE the website's alternating side-by-side image+text rows in the PDF.
    Each row stays a flex pair with fixed image heights and break-inside:avoid so it never splits across
    a page boundary - selective layout, NOT a global flatten. */
@@ -475,22 +505,22 @@ p{{orphans:3;widows:3}}
 <div class="exec-glance">
 <h3 class="sub-heading">Property at a Glance</h3>
 <div class="exec-facts two-col">
-<table class="it">
+<div class="fact-panel"><table><tbody>
 <tr><td>Address</td><td>3607 Pacific Avenue, Marina del Rey, CA 90292</td></tr>
 <tr><td>Submarket</td><td>Marina Peninsula / Venice Coastal Zone</td></tr>
 <tr><td>Units</td><td>6 &mdash; All 2BR/1BA</td></tr>
 <tr><td>Building SF</td><td>5,634 SF (avg ~925 SF/unit)</td></tr>
 <tr><td>Lot Size</td><td>0.15 Acres (6,401 SF)</td></tr>
 <tr><td>Year Built / Renovated</td><td>1964 / 2025</td></tr>
-</table>
-<table class="it">
-<tr><td>Price / SF</td><td>$957.58</td></tr>
-<tr><td>Cap Rate (Yr 1 / Pro Forma)</td><td>4.75% / 5.60%</td></tr>
-<tr><td>GRM (Yr 1 / Pro Forma)</td><td>14.28 / 13.34</td></tr>
+</tbody></table></div>
+<div class="fact-panel"><table><tbody>
 <tr><td>NOI (Yr 1 / Pro Forma)</td><td>$256,355 / $301,898</td></tr>
 <tr><td>Zoning</td><td>R3-1 &mdash; LARSO + AB 1482</td></tr>
+<tr><td>Parking</td><td>One private space per unit</td></tr>
+<tr><td>Soft-Story Retrofit</td><td>Completed (LADBS CofC 3/26/2024)</td></tr>
+<tr><td>ADU Upside</td><td>Office &amp; laundry convertible, subject to jurisdictional approvals</td></tr>
 <tr><td>Offering Type</td><td>Standard / Stabilized</td></tr>
-</table>
+</tbody></table></div>
 </div>
 </div>
 </div>
@@ -500,6 +530,8 @@ p{{orphans:3;widows:3}}
 <div class="section-title">Investment Overview</div>
 <div class="section-subtitle">Architecture by Ellis Gelman &bull; Steps from the Sand</div>
 <div class="section-divider"></div>
+
+<div class="pq"><p>A renovated, architecturally distinctive six-unit beach-front asset on the Marina Peninsula, steps from the sand. Rare Gelman-designed product and beach-walk frontage paired with mark-to-market rent upside and ADU optionality, in one of LA&rsquo;s most supply-constrained coastal rental submarkets.</p><cite>Investment Thesis</cite></div>
 
 <div class="photo-grid">
 <img src="{g_main}" alt="3607 Pacific Avenue — twilight street elevation">
@@ -593,11 +625,20 @@ p{{orphans:3;widows:3}}
 
 <div class="loc-hero"><img src="{context}" alt="3607 Pacific Avenue — Marina Del Rey context aerial showing Marina del Rey Harbor, Burton Chace Park, Fisherman's Village, Mothers Beach, and beach access"></div>
 
+<div class="stat-row">
+<div class="stat"><span class="stat-v">4 mi</span><span class="stat-l">North of LAX</span></div>
+<div class="stat"><span class="stat-v">~12 mi</span><span class="stat-l">To Downtown LA</span></div>
+<div class="stat"><span class="stat-v">5,000+</span><span class="stat-l">Boats in the Marina</span></div>
+<div class="stat"><span class="stat-v">22 mi</span><span class="stat-l">Marvin Braude Bike Trail</span></div>
+</div>
+
 <div class="narrative">
 <h3 class="sub-heading">Marina del Rey &amp; the Marina Peninsula</h3>
 <p>Eastwind Apartments occupies one of the most coveted pieces of coastal Los Angeles real estate: the <strong>Marina Peninsula</strong> in Marina del Rey, a narrow strip of beachfront residential community wedged between the open Pacific Ocean and North America&rsquo;s largest man-made small-craft harbor. Marina del Rey is renowned as a premier destination for waterfront living and recreation, home to more than 5,000 boats and a vibrant collection of resort-style hotels, dockside dining, and outdoor recreation that includes sailing, kayaking, paddleboarding, and dining cruises. Located just four miles north of LAX and approximately twelve miles from downtown Los Angeles, the area pairs small-town coastal charm with immediate access to one of the nation&rsquo;s largest metropolitan economies. Land-based amenities include the 22-mile Marvin Braude Coastal Bike Trail, Burton Chace Park (a 10-acre harborfront park hosting free summer concerts), Mother&rsquo;s Beach, Fisherman&rsquo;s Village, and the Villa Marina and Waterside shopping and dining centers.</p>
 
 <p>The Marina Peninsula itself is defined by quiet, low-traffic walk streets, a powerful sense of neighborhood, and an architectural fabric dominated by single-family homes, small luxury condominiums, and a tightly held inventory of intimately scaled apartment buildings. Inventory turnover is exceptionally low; the combination of geographic constraint, restrictive zoning, and pride-of-ownership stewardship has made the Peninsula a true rarity among Westside rental submarkets.</p>
+
+<div class="cn"><strong>Why it matters:</strong> persistent supply constraint paired with deep, year-round Westside demand underpins the durable occupancy and rent stability that anchor Eastwind&rsquo;s long-term value.</div>
 
 <h3 class="sub-heading">Adjacent Venice</h3>
 <p>Immediately to the north, the Marina Peninsula flows into the iconic neighborhood of Venice. Founded in 1905 by Abbot Kinney as a coastal resort town and annexed by Los Angeles in 1926, Venice is one of the most culturally distinctive and economically vital neighborhoods in the Los Angeles metro. Known for its bohemian spirit, its world-famous Ocean Front Walk, its iconic canals, and its modernist residential architecture, Venice draws an estimated 28,000 to 30,000 visitors daily and more than ten million annually, a tourism engine that supports a deep, year-round demand base within walking distance of Eastwind. Abbot Kinney Boulevard, ranked among the most influential retail streets in the country, anchors the area&rsquo;s upscale lifestyle layer with stylish boutiques, artisanal coffee shops, and destination dining, while the Venice Canals, the Venice Fishing Pier, Muscle Beach, and the Venice Beach Recreation Center round out a recreational footprint few residential submarkets can match.</p>
@@ -672,6 +713,14 @@ p{{orphans:3;widows:3}}
 <div class="section-title">Financial Analysis</div>
 <div class="section-subtitle">Operating Performance &amp; Returns at $5,395,000</div>
 <div class="section-divider"></div>
+
+<div class="stat-row">
+<div class="stat"><span class="stat-v">4.75%</span><span class="stat-l">Year 1 Cap</span></div>
+<div class="stat"><span class="stat-v">5.60%</span><span class="stat-l">Pro Forma Cap</span></div>
+<div class="stat"><span class="stat-v">3.50%</span><span class="stat-l">Year 1 Cash-on-Cash</span></div>
+<div class="stat"><span class="stat-v">5.19%</span><span class="stat-l">Pro Forma Cash-on-Cash</span></div>
+<div class="stat"><span class="stat-v">1.58</span><span class="stat-l">DCR (Year 1)</span></div>
+</div>
 
 <h3 class="sub-heading">Rent Roll</h3>
 <div class="ts ts-wide"><table class="fin-num-2">
@@ -781,6 +830,7 @@ p{{orphans:3;widows:3}}
 
 <p>The surrounding Venice and Marina Peninsula transactions confirm a market range of $338 to $1,108 per square foot, with cap rates predominantly in the 4.4% to 5.7% range. At $957.58/SF and a 4.75% cap rate (5.60% pro forma), the subject is positioned within the premium-tier coastal anchor range supported by the most directly comparable transactions.</p>
 </div>
+<div class="cn takeaway"><strong>The two most directly comparable six-unit coastal trades bracket the subject:</strong> 315 Vernon Avenue ($1,046/SF, 5.04% cap) and 101 Catamaran Street (same 1964 vintage, 5.71% cap). At $957.58/SF and a 4.75% cap (5.60% pro forma), Eastwind prices into the premium tier on the strength of its completed renovation, soft-story retrofit, and Gelman architectural pedigree.</div>
 </div>
 
 <!-- ════ RENT COMPARABLES ════ -->
@@ -807,6 +857,7 @@ p{{orphans:3;widows:3}}
 <p>The three closest comparable 2BR rentals on the Marina Peninsula and adjacent Venice corridors all achieve <strong>$5,500/month</strong>. The subject&rsquo;s pro forma rents (averaging $5,617/month, $6.24/SF) reflect modest upside above the immediate market &mdash; supported by the property&rsquo;s renovated interiors, architectural pedigree, private roof terrace, gated entry, and one private parking space per unit. The closest direct comparable, <strong>3003 Ocean Front Walk</strong>, achieves $7.86/SF &mdash; demonstrating the rent premium achievable for ocean-proximate 2BR product in this submarket.</p>
 <p>Current in-place rents at the subject average $5,247/month ($5.83/SF), with the highest in-place unit at $5,850/month ($6.50/SF). Per-unit rents range from $4,845 to $5,850 reflecting unit-level finish variations and tenancy duration.</p>
 </div>
+<div class="cn takeaway"><strong>All three closest 2BR comps clear $5,500/month.</strong> The subject&rsquo;s $5,617 pro forma average ($6.24/SF) sits just above the comp set and below the $7.86/SF achieved at ocean-front 3003 Ocean Front Walk, indicating credible room on turnover for renovated, beach-walk product like Eastwind.</div>
 <div class="cn">
 Additional rent comparables and current LARSO compliance documentation are available through the broker team upon request and during due diligence.
 </div>
